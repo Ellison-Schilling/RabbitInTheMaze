@@ -18,10 +18,10 @@
  * Third person perspective
 
 ### Developer Roles 
-Product Owner - ultimately responsible for your deliverables, keeping the project on track, and making executive decisions. (Alex)
-Gameplay Designer - holds the vision for the gameplay loop and progression, ensuring that all environments, gameplay elements, etc contribute to this vision. (Caden)
-Asset Manager - sources art assets and ensures that they integrate in keeping with the game’s overall design. (Ellie)
-Sound Designer - sources sound effects/music and ensures that they integrate in keeping with the game’s overall design (Russell)
+ * Product Owner - ultimately responsible for your deliverables, keeping the project on track, and making executive decisions. (Alex)
+ * Gameplay Designer - holds the vision for the gameplay loop and progression, ensuring that all environments, gameplay elements, etc contribute to this vision. (Caden)
+ * Asset Manager - sources art assets and ensures that they integrate in keeping with the game’s overall design. (Ellie)
+ * Sound Designer - sources sound effects/music and ensures that they integrate in keeping with the game’s overall design (Russell)
 
 
 
