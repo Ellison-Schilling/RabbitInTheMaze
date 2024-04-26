@@ -6,20 +6,26 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
+    CharacterController characterController;
     Animator animator;
-    Quaternion m_Rotation = Quaternion.identity;
+    Transform m_Transform;
     Vector3 center_screen;
     Vector3 to_mouse;
+    Vector3 move;
     float desired_Angle;
+    int moving;
+
     public float max_speed;
+    public float gravity;
 
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+        m_Transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0);
     }
+
     void Update()
     {
         center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
@@ -31,27 +37,35 @@ public class PlayerMovement : MonoBehaviour
         {
             desired_Angle = desired_Angle * -1;
         }
-        m_Rotation.eulerAngles = new Vector3(0f, desired_Angle, 0f);
-
-        if (Input.GetAxis("Stop") == 1)
+        animator.SetFloat("Speed", moving);
+        if (Input.GetAxis("Go") == 1)
         {
-            animator.SetFloat("Speed", 1);
-        }
-        else
-        {
-            if(Input.GetAxis("Sprint") == 1)
+            if (Input.GetAxis("Sprint") == 1)
             {
-                m_Rigidbody.velocity = transform.forward * max_speed;
+                move = new Vector3(to_mouse.x, 0f, to_mouse.y) * max_speed;
             }
             else
             {
-                m_Rigidbody.velocity = transform.forward * max_speed * 0.5f;
+                move = new Vector3(to_mouse.x, 0f, to_mouse.y) * max_speed * 0.5f;
             }
-            animator.SetFloat("Speed", 0);
+            moving = 0;
+        }
+        else
+        {
+            move = Vector3.zero;
+            moving = 1;
+        }
+        if (!characterController.isGrounded)
+        {
+            move.y += (move.y - 1) * gravity;
         }
     }
 
+    void FixedUpdate()
+    {
+        characterController.Move(move);
+    }
     void OnAnimatorMove () {
-        m_Rigidbody.MoveRotation(m_Rotation);
+        m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
 }

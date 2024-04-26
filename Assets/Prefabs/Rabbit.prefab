@@ -504,12 +504,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441111291544050}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4677745771901032}
+  m_Father: {fileID: 4376261447206455811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &137485845215741518
 SkinnedMeshRenderer:
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 95674028643950644}
   - component: {fileID: 8853284793628280949}
   - component: {fileID: 5936656458654264993}
-  - component: {fileID: 2642084194540968635}
+  - component: {fileID: 1628144187834467264}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -746,9 +746,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4376261447206455811}
   - {fileID: 4136954610420946}
-  - {fileID: 4280294624668182}
-  - {fileID: 4709169015965626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95674028643950644
@@ -784,7 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d70909296eb1b4bae7ba2eaa899304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_speed: 16
+  max_speed: 2
+  gravity: 0
 --- !u!54 &5936656458654264993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -808,12 +808,12 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2642084194540968635
-BoxCollider:
+--- !u!143 &1628144187834467264
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -831,8 +831,13 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.75, z: 0.75}
-  m_Center: {x: 0, y: 0.375, z: 0}
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,12 +1058,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987778546906186}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4677745771901032}
+  m_Father: {fileID: 4376261447206455811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &137231876560530974
 SkinnedMeshRenderer:
@@ -1137,3 +1142,36 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0022598016, y: 0.0002025587, z: 0.0031607198}
     m_Extent: {x: 0.008779211, y: 0.007644344, z: 0.010325898}
   m_DirtyAABB: 0
+--- !u!1 &4494158781263372594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4376261447206455811}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4376261447206455811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494158781263372594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.27856994, z: 0.060847044}
+  m_LocalScale: {x: 0.33575004, y: 0.4959417, z: 0.49997994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4709169015965626}
+  - {fileID: 4280294624668182}
+  m_Father: {fileID: 4677745771901032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
