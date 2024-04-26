@@ -7,31 +7,51 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
-    CharacterController characterController;
-    Vector3 move;
-    float gravity;
-
-    public float speed = 1.0f;
+    Animator animator;
+    Quaternion m_Rotation = Quaternion.identity;
+    Vector3 center_screen;
+    Vector3 to_mouse;
+    float desired_Angle;
+    public float max_speed;
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 0);
     }
-
-    void FixedUpdate()
+    void Update()
     {
-        if (!characterController.isGrounded)
+        center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
+        to_mouse = Input.mousePosition - center_screen;
+        to_mouse.Normalize();
+        desired_Angle = (float)Math.Acos(to_mouse.y);
+        desired_Angle = (180f / (float)Math.PI) * desired_Angle;
+        if (to_mouse.x < 0)
         {
-            gravity += ((gravity - 1) * 8 * Time.deltaTime);
-            if (gravity > 20) { gravity= 20; }
+            desired_Angle = desired_Angle * -1;
+        }
+        m_Rotation.eulerAngles = new Vector3(0f, desired_Angle, 0f);
+
+        if (Input.GetAxis("Stop") == 1)
+        {
+            animator.SetFloat("Speed", 1);
         }
         else
         {
-            gravity = 0.0f;
+            if(Input.GetAxis("Sprint") == 1)
+            {
+                m_Rigidbody.velocity = transform.forward * max_speed;
+            }
+            else
+            {
+                m_Rigidbody.velocity = transform.forward * max_speed * 0.5f;
+            }
+            animator.SetFloat("Speed", 0);
         }
-        move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
+    }
 
-        characterController.Move(move * Time.deltaTime * speed);
+    void OnAnimatorMove () {
+        m_Rigidbody.MoveRotation(m_Rotation);
     }
 }
