@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                move = to_mouse * 0.5f;
+                move = to_mouse * max_speed * 0.5f;
             }
             moving = 0;
         }
