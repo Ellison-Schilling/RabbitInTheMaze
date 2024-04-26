@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     Animator animator;
     Transform m_Transform;
-    Vector3 center_screen;
     Vector3 to_mouse;
     Vector3 move;
     float desired_Angle;
@@ -17,6 +15,28 @@ public class PlayerMovement : MonoBehaviour
 
     public float max_speed;
     public float gravity;
+
+    Vector3 getMouseVector()
+    {
+        Vector3 result;
+        Vector3 center_screen = new Vector3(0f, 0f, 0f);
+        center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
+        result = Input.mousePosition - center_screen;
+        result.Normalize();
+        return result;
+    }
+
+    float AngleFromVector(Vector3 vec)
+    {
+        float result;
+        result = (float)Math.Acos(to_mouse.y);
+        result = (180f / (float)Math.PI) * result;
+        if (to_mouse.x < 0)
+        {
+            result = result * -1;
+        }
+        return result;
+    }
 
     void Start()
     {
@@ -28,25 +48,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
-        to_mouse = Input.mousePosition - center_screen;
-        to_mouse.Normalize();
-        desired_Angle = (float)Math.Acos(to_mouse.y);
-        desired_Angle = (180f / (float)Math.PI) * desired_Angle;
-        if (to_mouse.x < 0)
-        {
-            desired_Angle = desired_Angle * -1;
-        }
+        to_mouse = getMouseVector();
+        desired_Angle = AngleFromVector(to_mouse);
+        to_mouse.z = to_mouse.y;
+        to_mouse.y = 0f;
         animator.SetFloat("Speed", moving);
         if (Input.GetAxis("Go") == 1)
         {
             if (Input.GetAxis("Sprint") == 1)
             {
-                move = new Vector3(to_mouse.x, 0f, to_mouse.y) * max_speed;
+                move = to_mouse * max_speed;
             }
             else
             {
-                move = new Vector3(to_mouse.x, 0f, to_mouse.y) * max_speed * 0.5f;
+                move = to_mouse * 0.5f;
             }
             moving = 0;
         }
@@ -55,17 +70,18 @@ public class PlayerMovement : MonoBehaviour
             move = Vector3.zero;
             moving = 1;
         }
-        if (!characterController.isGrounded)
-        {
-            move.y += (move.y - 1) * gravity;
-        }
     }
 
     void FixedUpdate()
     {
+        if (!characterController.isGrounded)
+        {
+            move.y += (move.y - 1) * gravity;
+        }
         characterController.Move(move);
     }
-    void OnAnimatorMove () {
+    void OnAnimatorMove()
+    {
         m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
 }
