@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public float max_speed;
     public float gravity;
 
+    public KeyCollection key; //imports the KeyCollection script
+    public bool hasKey;
+
     Vector3 getMouseVector()
     {
         Vector3 result;
@@ -70,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             move = Vector3.zero;
             moving = 1;
         }
+        hasKey = key.isKeyFound(); //check if the player has found the key
     }
 
     void FixedUpdate()
@@ -84,4 +88,13 @@ public class PlayerMovement : MonoBehaviour
     {
         m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
+
+    void OnTriggerEnter(Collider other){
+        if (other.gameObject.CompareTag("exit")){
+            if(hasKey == true){
+                Debug.Log("You completed the maze!");
+            }
+        }
+    }
+
 }
