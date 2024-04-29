@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     public KeyCollection key; //imports the KeyCollection script
     public bool hasKey;
+    public AudioSource walkSteps;
+    public AudioSource sprintSteps;
 
     Vector3 getMouseVector()
     {
@@ -60,16 +62,28 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetAxis("Sprint") == 1)
             {
+                walkSteps.Stop();
+                if (!sprintSteps.isPlaying)
+                {
+                    sprintSteps.Play();
+                }
                 move = to_mouse * max_speed;
             }
             else
             {
+                sprintSteps.Stop();
+                if (!walkSteps.isPlaying)
+                {
+                    walkSteps.Play();
+                }
                 move = to_mouse * max_speed * 0.5f;
             }
             moving = 0;
         }
         else
         {
+            walkSteps.Stop();
+            sprintSteps.Stop();
             move = Vector3.zero;
             moving = 1;
         }
@@ -89,9 +103,12 @@ public class PlayerMovement : MonoBehaviour
         m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
 
-    void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("exit")){
-            if(hasKey == true){
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("exit"))
+        {
+            if (hasKey == true)
+            {
                 Debug.Log("You completed the maze!");
             }
         }

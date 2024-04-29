@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
+
+    public AudioSource collect_noise;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,8 +20,11 @@ public class Collectable : MonoBehaviour
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other){
-        if(other.CompareTag("Player")){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            collect_noise.Play();
             Destroy(gameObject);
         }
     }
