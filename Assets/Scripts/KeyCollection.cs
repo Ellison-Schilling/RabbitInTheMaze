@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class KeyCollection : MonoBehaviour
 {
-
+    public AudioSource collect_noise;
     private bool keyFound = false;
 
     // Start is called before the first frame update
-    void Start(){
-        
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
         float rotationSpeed = 50f;
         float horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other){
-        if(other.CompareTag("Player")){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            collect_noise.Play();
             Destroy(gameObject);
             keyFound = true;
         }
     }
 
-    public bool isKeyFound(){
+    public bool isKeyFound()
+    {
         return keyFound;
     }
 

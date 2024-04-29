@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool hasKey;
     public AudioSource walkSteps;
     public AudioSource sprintSteps;
+    public AudioSource gameWon;
 
     Vector3 getMouseVector()
     {
@@ -103,12 +104,13 @@ public class PlayerMovement : MonoBehaviour
         m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("exit"))
         {
             if (hasKey == true)
             {
+                gameWon.Play();
                 Debug.Log("You completed the maze!");
             }
         }
