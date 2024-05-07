@@ -5,7 +5,9 @@ using UnityEngine;
 public class KeyCollection : MonoBehaviour
 {
     public AudioSource collect_noise;
-    private bool keyFound = false;
+    public float rotationSpeed = 50f;
+
+    static bool keyFound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -14,11 +16,9 @@ public class KeyCollection : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        float rotationSpeed = 50f;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
