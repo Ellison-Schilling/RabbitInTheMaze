@@ -7,14 +7,15 @@ TagManager:
   - OffsetEntrance
   - StandardEntrance
   - exit
+  - enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
