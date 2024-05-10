@@ -41,17 +41,18 @@ public class enemyMovement : MonoBehaviour
 
     private void Patrol()
     {
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);
-        }
-        else
+        if (!walkPointSet)
         {
             SearchWalkPoint();
         }
+        if (walkPointSet)
+        {
+            Debug.DrawLine(transform.position, walkPoint);
+            agent.SetDestination(walkPoint);
+        }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 3f)
         {
             Debug.Log("walkpoint false");
             walkPointSet = false;
@@ -65,10 +66,19 @@ public class enemyMovement : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        Debug.Log("new walkpoint set");
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        //check if 
+        /*if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
+            Debug.DrawLine(transform.position, walkPoint);
             Debug.Log("walkpoint true");
+            walkPointSet = true;
+        }*/
+        if (!Physics.Raycast(transform.position, walkPoint, walkPointRange, whatIsPlayer))
+        {
+            Debug.DrawLine(transform.position, walkPoint);
+            Debug.DrawRay(transform.position, walkPoint, Color.green);
             walkPointSet = true;
         }
     }
