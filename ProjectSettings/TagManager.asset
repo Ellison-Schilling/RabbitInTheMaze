@@ -8,6 +8,8 @@ TagManager:
   - StandardEntrance
   - exit
   - enemy
+  - carrot
+  - KnockbackItem
   layers:
   - Default
   - TransparentFX
