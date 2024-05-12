@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement; // Required for SceneManager
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Transform m_Transform;
     Vector3 to_mouse;
     Vector3 move;
+    private float timer = 0f;
+
     float desired_Angle;
     int moving;
 
@@ -21,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource walkSteps;
     public AudioSource sprintSteps;
     public AudioSource gameWon;
+    public GameObject winTextObject;
+    public GameObject winPanel;
+    private bool hasWon = false;
+
+
 
     Vector3 getMouseVector()
     {
@@ -50,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
         m_Transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0);
+        winTextObject.SetActive(false);
+        winPanel.SetActive(false);
+
     }
 
     void Update()
@@ -89,6 +102,16 @@ public class PlayerMovement : MonoBehaviour
             moving = 1;
         }
         hasKey = key.isKeyFound(); //check if the player has found the key
+        if (hasWon)
+            {
+                timer += Time.deltaTime;
+                if (timer >= 5f) // Wait for 2 seconds
+                {
+                    Debug.Log("Waited for 5 seconds");
+                    SceneManager.LoadScene("TitleScreen");
+                    hasWon = false;
+                }
+            }
     }
 
     void FixedUpdate()
@@ -108,12 +131,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("exit"))
         {
-            if (hasKey == true)
+            if (hasKey == true && hasWon == false)
             {
                 gameWon.Play();
                 Debug.Log("You completed the maze!");
+                winTextObject.SetActive(true);
+                winPanel.SetActive(true);
+                hasWon = true;
             }
         }
     }
-
 }
