@@ -28,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource gameWon;
     public GameObject winTextObject;
     public GameObject winPanel;
+    public GameObject deathPanel;
     private bool hasWon = false;
+    private bool hasLost = false;
 
 
 
@@ -60,67 +62,78 @@ public class PlayerMovement : MonoBehaviour
         m_Transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0);
+        animator.SetBool("Is_Dead", false);
         winTextObject.SetActive(false);
         winPanel.SetActive(false);
-
+        deathPanel.SetActive(false);
     }
-
+    
+    void toTitleScreen(float seconds){
+        timer += Time.deltaTime;
+        hasKey = false;
+        if (timer >= seconds) // Wait for 2 seconds
+        {
+            SceneManager.LoadScene("TitleScreen");
+            hasWon = false;
+            hasLost = false;
+        }
+    }
     void Update()
     {
-        to_mouse = getMouseVector();
-        desired_Angle = AngleFromVector(to_mouse);
-        to_mouse.z = to_mouse.y;
-        to_mouse.y = 0f;
-        animator.SetFloat("Speed", moving);
-        if (Input.GetAxis("Go") == 1)
-        {
-            if (Input.GetAxis("Sprint") == 1)
+        if (!hasLost){
+            to_mouse = getMouseVector();
+            desired_Angle = AngleFromVector(to_mouse);
+            to_mouse.z = to_mouse.y;
+            to_mouse.y = 0f;
+            animator.SetFloat("Speed", moving);
+            if (Input.GetAxis("Go") == 1)
             {
-                walkSteps.Stop();
-                if (!sprintSteps.isPlaying)
+                if (Input.GetAxis("Sprint") == 1)
                 {
-                    sprintSteps.Play();
+                    walkSteps.Stop();
+                    if (!sprintSteps.isPlaying)
+                    {
+                        sprintSteps.Play();
+                    }
+                    move = to_mouse * max_speed;
                 }
-                move = to_mouse * max_speed;
+                else
+                {
+                    sprintSteps.Stop();
+                    if (!walkSteps.isPlaying)
+                    {
+                        walkSteps.Play();
+                    }
+                    move = to_mouse * max_speed * 0.5f;
+                }
+                moving = 0;
             }
             else
             {
+                walkSteps.Stop();
                 sprintSteps.Stop();
-                if (!walkSteps.isPlaying)
-                {
-                    walkSteps.Play();
-                }
-                move = to_mouse * max_speed * 0.5f;
+                move = Vector3.zero;
+                moving = 1;
             }
-            moving = 0;
-        }
-        else
-        {
-            walkSteps.Stop();
-            sprintSteps.Stop();
-            move = Vector3.zero;
-            moving = 1;
-        }
-        hasKey = key.isKeyFound(); //check if the player has found the key
-        if (hasWon)
-            {
-                timer += Time.deltaTime;
-                if (timer >= 5f) // Wait for 2 seconds
-                {
-                    Debug.Log("Waited for 5 seconds");
-                    SceneManager.LoadScene("TitleScreen");
-                    hasWon = false;
+            hasKey = key.isKeyFound(); //check if the player has found the key
+            if (hasWon){
+                    toTitleScreen(5.0f);
                 }
-            }
+        } else {
+                toTitleScreen(3.0f);
+        }
     }
 
+
     void FixedUpdate()
-    {
+    {   
+        if (!hasLost){
         if (!characterController.isGrounded)
         {
             move.y += (move.y - 1) * gravity;
         }
         characterController.Move(move);
+        }
     }
     void OnAnimatorMove()
     {
@@ -131,13 +144,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("exit"))
         {
-            if (hasKey == true && hasWon == false)
+            if (hasKey && !hasWon) // Then win game
             {
                 gameWon.Play();
                 Debug.Log("You completed the maze!");
                 winTextObject.SetActive(true);
                 winPanel.SetActive(true);
                 hasWon = true;
+            }
+        }
+        else if (other.gameObject.CompareTag("enemy")){
+            if (!hasWon && !hasLost){   //   Then lose game
+                animator.SetBool("Is_Dead", true);
+                hasLost = true;
+                deathPanel.SetActive(true);
             }
         }
     }

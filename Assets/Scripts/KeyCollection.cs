@@ -14,7 +14,7 @@ public class KeyCollection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        keyFound = false;
     }
 
     // Update is called once per frame
