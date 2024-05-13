@@ -6,13 +6,15 @@ public class KeyCollection : MonoBehaviour
 {
     public AudioSource collect_noise;
     public float rotationSpeed = 50f;
+    public GameObject gate_swing_right;
+    public GameObject gate_swing_left;
 
     static bool keyFound = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        keyFound = false;
     }
 
     // Update is called once per frame
@@ -28,6 +30,8 @@ public class KeyCollection : MonoBehaviour
             collect_noise.Play();
             Destroy(gameObject);
             keyFound = true;
+            gate_swing_left.transform.Rotate(0,-60,0);
+            gate_swing_right.transform.Rotate(0,60,0);
         }
     }
 

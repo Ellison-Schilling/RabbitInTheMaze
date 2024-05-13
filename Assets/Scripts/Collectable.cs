@@ -6,6 +6,8 @@ public class Collectable : MonoBehaviour
 {
 
     public AudioSource collect_noise;
+    public Item item;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,17 @@ public class Collectable : MonoBehaviour
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 
+    void Pickup(){
+        InventoryManager.Instance.Add(item);
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            collect_noise.Play();
-            Destroy(gameObject);
+            //collect_noise.Play();
+            Pickup();
         }
     }
 
