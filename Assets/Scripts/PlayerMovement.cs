@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 to_mouse;
     Vector3 move;
     private float timer = 0f;
-
+    private float startTime;
+    private float currentTime;
     float desired_Angle;
     int moving;
 
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject deathPanel;
     private bool hasWon = false;
     private bool hasLost = false;
+    public TextMeshProUGUI timerText;
+
 
 
 
@@ -56,7 +59,15 @@ public class PlayerMovement : MonoBehaviour
         }
         return result;
     }
-
+ void UpdateTimerText(float time) 
+        {
+            // Set the counter text in the corner of the window to display the score
+            float minutes = Mathf.FloorToInt(time / 60);
+            float seconds = Mathf.FloorToInt(time % 60);
+            string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text =  "Time: " + timeString;
+            
+        }
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -67,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         winTextObject.SetActive(false);
         winPanel.SetActive(false);
         deathPanel.SetActive(false);
+        startTime = Time.time;
     }
 
     void toTitleScreen(float seconds)
@@ -82,8 +94,13 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+  
         if (!hasLost)
         {
+            if (!hasWon){
+                currentTime = Time.time - startTime;
+                UpdateTimerText(currentTime);
+            }
             to_mouse = getMouseVector();
             desired_Angle = AngleFromVector(to_mouse);
             to_mouse.z = to_mouse.y;
