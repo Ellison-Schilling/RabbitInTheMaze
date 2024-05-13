@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572298931405812827}
   m_Layer: 0
-  m_Name: ThreeRoom - Copy
+  m_Name: TwoRoomStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
