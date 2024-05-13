@@ -23,8 +23,11 @@ public class Collectable : MonoBehaviour
     }
 
     void Pickup(){
-        InventoryManager.Instance.Add(item);
-        Destroy(gameObject);
+        if(InventoryManager.Instance.itemsInInventory < InventoryManager.Instance.capacity){
+            //We only want to add to the inventory if it isn't full
+            InventoryManager.Instance.Add(item);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
