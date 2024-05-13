@@ -32,5 +32,20 @@ public class InventoryManager : MonoBehaviour
         itemsInInventory--;
     }
 
+    public void RemoveAtIndex(int index){
+        Items.RemoveAt(index);
+        itemsInInventory--;
+    }
+
+    public void loopThroughList(string itemID){
+        int index = 0;
+        foreach(Item item in Items){
+            if (item.itemName == itemID){
+                RemoveAtIndex(index);
+            }
+            index++;
+        }
+    }
+
 }
 
