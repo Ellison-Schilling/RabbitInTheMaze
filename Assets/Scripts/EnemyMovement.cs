@@ -54,7 +54,7 @@ public class enemyMovement : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if (distanceToWalkPoint.magnitude < 3f)
         {
-            Debug.Log("walkpoint false");
+            //Debug.Log("walkpoint false");
             walkPointSet = false;
         }
     }
@@ -66,7 +66,7 @@ public class enemyMovement : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        Debug.Log("new walkpoint set");
+        //Debug.Log("new walkpoint set");
 
         //check if 
         /*if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))

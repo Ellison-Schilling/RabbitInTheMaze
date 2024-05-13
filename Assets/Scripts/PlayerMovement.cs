@@ -118,11 +118,19 @@ public class PlayerMovement : MonoBehaviour
                 move = Vector3.zero;
                 moving = 1;
             }
+
             hasKey = key.isKeyFound(); //check if the player has found the key
+            
+            if (Input.GetKeyDown("e")){
+                InventoryManager.Instance.loopThroughList("Carrot");
+                max_speed += 0.05f;
+            }
+
             if (hasWon)
             {
                 toTitleScreen(5.0f);
             }
+
         }
         else
         {
