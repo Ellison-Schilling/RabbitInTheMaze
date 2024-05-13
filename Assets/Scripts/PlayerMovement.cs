@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     public KeyCollection key; //imports the KeyCollection script
     public bool hasKey;
+    public bool hasCarrot;
     public AudioSource walkSteps;
     public AudioSource sprintSteps;
     public AudioSource gameWon;
@@ -139,8 +140,11 @@ public class PlayerMovement : MonoBehaviour
             hasKey = key.isKeyFound(); //check if the player has found the key
             
             if (Input.GetKeyDown("e")){
-                InventoryManager.Instance.loopThroughList("Carrot");
-                max_speed += 0.05f;
+                hasCarrot = InventoryManager.Instance.loopThroughList("Carrot"); //set to true if carrot in inventory
+                if (hasCarrot == true){
+                    max_speed += 0.05f;
+                    hasCarrot = false; //set to false until can check again
+                }
             }
 
             if (hasWon)
