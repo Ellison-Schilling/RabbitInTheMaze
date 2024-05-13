@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource walkSteps;
     public AudioSource sprintSteps;
     public AudioSource gameWon;
+    public AudioSource gameLost;
     public GameObject winTextObject;
     public GameObject winPanel;
     public GameObject deathPanel;
@@ -67,8 +68,9 @@ public class PlayerMovement : MonoBehaviour
         winPanel.SetActive(false);
         deathPanel.SetActive(false);
     }
-    
-    void toTitleScreen(float seconds){
+
+    void toTitleScreen(float seconds)
+    {
         timer += Time.deltaTime;
         hasKey = false;
         if (timer >= seconds) // Wait for 2 seconds
@@ -80,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (!hasLost){
+        if (!hasLost)
+        {
             to_mouse = getMouseVector();
             desired_Angle = AngleFromVector(to_mouse);
             to_mouse.z = to_mouse.y;
@@ -116,23 +119,27 @@ public class PlayerMovement : MonoBehaviour
                 moving = 1;
             }
             hasKey = key.isKeyFound(); //check if the player has found the key
-            if (hasWon){
-                    toTitleScreen(5.0f);
-                }
-        } else {
-                toTitleScreen(3.0f);
+            if (hasWon)
+            {
+                toTitleScreen(5.0f);
+            }
+        }
+        else
+        {
+            toTitleScreen(3.0f);
         }
     }
 
 
     void FixedUpdate()
-    {   
-        if (!hasLost){
-        if (!characterController.isGrounded)
+    {
+        if (!hasLost)
         {
-            move.y += (move.y - 1) * gravity;
-        }
-        characterController.Move(move);
+            if (!characterController.isGrounded)
+            {
+                move.y += (move.y - 1) * gravity;
+            }
+            characterController.Move(move);
         }
     }
     void OnAnimatorMove()
@@ -153,8 +160,11 @@ public class PlayerMovement : MonoBehaviour
                 hasWon = true;
             }
         }
-        else if (other.gameObject.CompareTag("enemy")){
-            if (!hasWon && !hasLost){   //   Then lose game
+        else if (other.gameObject.CompareTag("enemy"))
+        {
+            if (!hasWon && !hasLost)
+            {   //   Then lose game
+                gameLost.Play();
                 animator.SetBool("Is_Dead", true);
                 hasLost = true;
                 deathPanel.SetActive(true);
@@ -162,7 +172,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public float giveMaxSpeed(){
+    public float giveMaxSpeed()
+    {
         return max_speed;
     }
 
