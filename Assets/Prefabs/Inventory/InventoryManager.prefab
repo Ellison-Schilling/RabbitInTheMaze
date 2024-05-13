@@ -48,4 +48,4 @@ MonoBehaviour:
   itemsInInventory: 0
   capacity: 7
   ItemContent: {fileID: 0}
-  InventoryItem: {fileID: 0}
+  InventoryItem: {fileID: 4513680834601379576, guid: f5451e667ea359e4994265cd7fea8606, type: 3}

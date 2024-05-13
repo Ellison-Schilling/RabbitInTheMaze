@@ -161,4 +161,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    public float giveMaxSpeed(){
+        return max_speed;
+    }
+
 }
