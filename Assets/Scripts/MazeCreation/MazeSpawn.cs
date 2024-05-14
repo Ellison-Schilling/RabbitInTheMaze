@@ -5,37 +5,37 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class coord
-{
-    public int x;
-    public int y;
-
-    public coord( int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    public coord add(coord other)
-    {
-        coord result = new coord(this.x + other.x, this.y + other.y);
-        return result;
-    }
-
-    public coord sub(coord other)
-    {
-        coord result = new coord(this.x - other.x, this.y - other.y);
-        return result;
-    }
-
-    public bool IsEqual(coord other) 
-    {
-        return ((this.x == other.x) && (this.y == other.y));
-    }
-}
 
 public class RoomSpawn : MonoBehaviour
-{
+{    public class coord
+    {
+        public int x;
+        public int y;
+
+        public coord(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public coord add(coord other)
+        {
+            coord result = new coord(this.x + other.x, this.y + other.y);
+            return result;
+        }
+
+        public coord sub(coord other)
+        {
+            coord result = new coord(this.x - other.x, this.y - other.y);
+            return result;
+        }
+
+        public bool IsEqual(coord other)
+        {
+            return ((this.x == other.x) && (this.y == other.y));
+        }
+    }
+
     // Start is called before the first frame update
     public int NumberOfRooms;
     public float RoomScale;
@@ -236,6 +236,7 @@ public class RoomSpawn : MonoBehaviour
 
     void SpawnRoomAt(byte[][] sim, coord location)
     {
+        Debug.Log("Spawning room: " + RoomsSpawned + " at " + location.x + ", " + location.y); ;
         List<byte> Possibilities = GetPossibleRooms(sim, location);
         TrimPossibleRooms(Possibilities);
         byte choice = PickARoom(Possibilities);
@@ -253,6 +254,21 @@ public class RoomSpawn : MonoBehaviour
                 }
             }
         }
+        RoomsSpawned++;
+    }
+    void PrintSim(byte[][] sim)
+    {
+        string PrintOut = "";
+        for (int i = 0; i < SimSize; i++)
+        {
+            PrintOut += i + ": ";
+            for (int j = 0; j < SimSize; j++)
+            {
+                PrintOut += sim[j][i];
+            }
+            PrintOut += '\n';
+        }
+        Debug.Log(PrintOut);
     }
 
     // Start is called before the first frame update
@@ -273,10 +289,14 @@ public class RoomSpawn : MonoBehaviour
          * 4 - ThreeRoom
          * 5 - FourRoom
          */
+        Debug.Log("Making Sim");
         byte[][] sim = MakeSimMatrix();
         coord center = new coord((SimSize / 2), (SimSize / 2));
         sim[center.x][center.y] = 0b00000001;
+        Debug.Log("Spawning rooms");
         SpawnRoomAt(sim, center.add(CoordLookupTable[0]));
+        Debug.Log("Finished spawing rooms");
+        PrintSim(sim);
     }
 
 }
