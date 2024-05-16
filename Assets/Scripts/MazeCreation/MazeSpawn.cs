@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,12 +12,12 @@ public class RoomSpawn : MonoBehaviour
 {
     // Start is called before the first frame update
     public int NumberOfRooms;
-    static public float RoomScale;
-    static public GameObject FourRoom;
-    static public GameObject ThreeRoom;
-    static public GameObject TwoRoomBent;
-    static public GameObject TwoRoomStraight;
-    static public GameObject OneRoom;
+    public float RoomScale;
+    public GameObject FourRoom;
+    public GameObject ThreeRoom;
+    public GameObject TwoRoomBent;
+    public GameObject TwoRoomStraight;
+    public GameObject OneRoom;
 
     // Used to keep track of number of corridors that do not lead into another room
     // starts at one as the starting room should only have one exit.
@@ -32,7 +33,7 @@ public class RoomSpawn : MonoBehaviour
     public room[] RoomLookupTable =
     {
         null, // 0
-        new room(1, 4), // 1
+        new room(1, 3), // 1
         new room(1, 2), // 2
         new room(3, 2), // 3
         new room(1, 1), // 4
@@ -90,31 +91,6 @@ public class RoomSpawn : MonoBehaviour
         {
             this.RoomType = roomType;
             this.Rotation = rotation;
-        }
-
-        public void spawn(coord location)
-        {
-            UnityEngine.Vector3 RoomTransform = new UnityEngine.Vector3(location.x * RoomScale, 0, location.y * RoomScale);
-            UnityEngine.Quaternion RoomRot = new UnityEngine.Quaternion();
-            RoomRot.eulerAngles = new UnityEngine.Vector3(0, this.Rotation * 90, 0);
-            switch (RoomType) 
-            {
-                case 1:
-                    Instantiate(OneRoom, RoomTransform, RoomRot);
-                    break;
-                case 2:
-                    Instantiate(TwoRoomStraight, RoomTransform, RoomRot);
-                    break;
-                case 3:
-                    Instantiate(TwoRoomBent, RoomTransform, RoomRot);
-                    break;
-                case 4:
-                    Instantiate(ThreeRoom, RoomTransform, RoomRot);
-                    break;
-                case 5:
-                    Instantiate(FourRoom, RoomTransform, RoomRot);
-                    break;
-            }
         }
     }
 
@@ -253,6 +229,31 @@ public class RoomSpawn : MonoBehaviour
         }
     }
 
+    public void spawn(room Room, coord location)
+    {
+        UnityEngine.Vector3 RoomTransform = new UnityEngine.Vector3(location.x * RoomScale, 0, location.y * RoomScale);
+        UnityEngine.Quaternion RoomRot = new UnityEngine.Quaternion();
+        RoomRot.eulerAngles = new UnityEngine.Vector3(0, (Room.Rotation - 1) * 90, 0);
+        switch (Room.RoomType)
+        {
+            case 1:
+                Instantiate(OneRoom, RoomTransform, RoomRot);
+                break;
+            case 2:
+                Instantiate(TwoRoomStraight, RoomTransform, RoomRot);
+                break;
+            case 3:
+                Instantiate(TwoRoomBent, RoomTransform, RoomRot);
+                break;
+            case 4:
+                Instantiate(ThreeRoom, RoomTransform, RoomRot);
+                break;
+            case 5:
+                Instantiate(FourRoom, RoomTransform, RoomRot);
+                break;
+        }
+    }
+
     void InstantiateSim(byte[][] sim, coord center)
     {
         int room;
@@ -266,7 +267,7 @@ public class RoomSpawn : MonoBehaviour
                 room = sim[xs][ys];
                 if (room != 0)
                 {
-                    RoomLookupTable[room].spawn(location.sub(center));
+                    spawn(RoomLookupTable[room], location.sub(center));
                 }
             }
         }
