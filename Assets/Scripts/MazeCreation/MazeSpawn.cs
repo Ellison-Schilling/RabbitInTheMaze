@@ -2,12 +2,57 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
 public class RoomSpawn : MonoBehaviour
-{    public class coord
+{
+    // Start is called before the first frame update
+    public int NumberOfRooms;
+    static public float RoomScale;
+    static public GameObject FourRoom;
+    static public GameObject ThreeRoom;
+    static public GameObject TwoRoomBent;
+    static public GameObject TwoRoomStraight;
+    static public GameObject OneRoom;
+
+    // Used to keep track of number of corridors that do not lead into another room
+    // starts at one as the starting room should only have one exit.
+    private int RoomsSpawned = 1;
+
+    // Converts comapss direction numbers into relative coordinates. (x, y) aka (col, row)
+    static coord[] CoordLookupTable = { new coord(0, 1),
+                                 new coord(1, 0),
+                                 new coord(0, -1),
+                                 new coord(-1, 0)
+                               };
+
+    public room[] RoomLookupTable =
+    {
+        null, // 0
+        new room(1, 4), // 1
+        new room(1, 2), // 2
+        new room(3, 2), // 3
+        new room(1, 1), // 4
+        new room(2, 1), // 5
+        new room(3, 1), // 6
+        new room(4, 2), // 7
+        new room(1, 0), // 8
+        new room(3, 3), // 9
+        new room(2, 0), // 10
+        new room(4, 3), // 11
+        new room(3, 0), // 12
+        new room(4, 0), // 13
+        new room(4, 1), // 14
+        new room(5, 0), // 15
+    };
+
+    const int RoomSize = 100; // The unit size of a room. 100 means 100 x 100 units.
+    const int SimSize = 100; // The size of the spawning space for rooms. 100
+                             //  means a space of 100 x 100 rooms.
+    public class coord
     {
         public int x;
         public int y;
@@ -36,53 +81,41 @@ public class RoomSpawn : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    public int NumberOfRooms;
-    public float RoomScale;
-    public GameObject FourRoom;
-    public GameObject ThreeRoom;
-    public GameObject TwoRoomBent;
-    public GameObject TwoRoomStraight;
-    public GameObject OneRoom;
-
-    // Used to keep track of number of corridors that do not lead into another room
-    // starts at one as the starting room should only have one exit.
-    private int NumberOfOpenCorridors = 1;
-    private int RoomsSpawned = 1;
-
-    // Used to find the number of entrances into a room based on room style number.
-    int[] EntranceNumberSheet = { 0, 1, 2, 2, 3, 4 };
-    /* Gives a list of compass directions where the default room orientation has
-       an entrance.
-       0 - North
-       1 - East
-       2 - South
-       3 - West
-       4 - No exit
-    */
-    int[,] RelativeEntranceCoords = { {4, 4, 4, 4},
-                                      {0, 4, 4, 4},
-                                      {0, 2, 4, 4},
-                                      {0, 1, 4, 4},
-                                      {0, 1, 3, 4},
-                                      {0, 1, 2, 3},
-                                    };
-    // Converts comapss direction numbers into relative coordinates. (x, y) aka (col, row)
-    coord[] CoordLookupTable = { new coord(0, 1),
-                                 new coord(1, 0),
-                                 new coord(0, -1),
-                                 new coord(-1, 0)
-                               };
-    const int RoomSize = 100; // The unit size of a room. 100 means 100 x 100 units.
-    const int SimSize = 100; // The size of the spawning space for rooms. 100
-                             //  means a space of 100 x 100 rooms.
-    
-    // Rotates a given compass direction number based on the rooms compass direction number rotation
-    int CoordRotation(int RoomDirection, int CorridorDirection)
+    public class room
     {
-        if (CorridorDirection == 4) return 4;
-        int result = (RoomDirection + CorridorDirection) % 4;
-        return result;
+        public int RoomType;
+        public int Rotation;
+
+        public room(int roomType, int rotation)
+        {
+            this.RoomType = roomType;
+            this.Rotation = rotation;
+        }
+
+        public void spawn(coord location)
+        {
+            UnityEngine.Vector3 RoomTransform = new UnityEngine.Vector3(location.x * RoomScale, 0, location.y * RoomScale);
+            UnityEngine.Quaternion RoomRot = new UnityEngine.Quaternion();
+            RoomRot.eulerAngles = new UnityEngine.Vector3(0, this.Rotation * 90, 0);
+            switch (RoomType) 
+            {
+                case 1:
+                    Instantiate(OneRoom, RoomTransform, RoomRot);
+                    break;
+                case 2:
+                    Instantiate(TwoRoomStraight, RoomTransform, RoomRot);
+                    break;
+                case 3:
+                    Instantiate(TwoRoomBent, RoomTransform, RoomRot);
+                    break;
+                case 4:
+                    Instantiate(ThreeRoom, RoomTransform, RoomRot);
+                    break;
+                case 5:
+                    Instantiate(FourRoom, RoomTransform, RoomRot);
+                    break;
+            }
+        }
     }
 
     // Initializes the matrix used to generate the map.
@@ -100,162 +133,6 @@ public class RoomSpawn : MonoBehaviour
         return sim;
     }
 
-    // Given a room's identifying byte isolates the value associated with compass direction.
-    int GetCompass(byte room)
-    {
-        int compass = room & 0b11110000;
-        compass = compass >> 4;
-        return compass;
-    }
-
-    // Given a room's identifying byte isolates the value associated with room type.
-    int GetRoomType(byte room)
-    {
-        int roomType = room & 0b00001111;
-        return roomType;
-    }
-
-    byte MakeRoom(int dir, int type)
-    {
-        int result = 0b00000000;
-        result = (result & (dir << 4));
-        result = result & type;
-        return (byte)result;
-    }
-
-    bool RoomExistsAtCoordinates(byte[][] sim, coord location)
-    {
-        if (sim[location.x][location.y] != 0)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    bool CorridorHitsWall(byte[][] sim, coord location, int dir)
-    {
-        coord neighbor = location.add(CoordLookupTable[dir]);
-        if (!RoomExistsAtCoordinates(sim, neighbor))
-        {
-            return false;
-        }
-        int opposite = (dir + 2) % 4;
-        int roomtype = GetRoomType(sim[neighbor.x][neighbor.y]);
-        for (int i = 0; i < 4; i++)
-        {
-            if (RelativeEntranceCoords[roomtype, i] == opposite)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    bool RoomPlacementIsValid(byte[][] sim, coord location, byte room)
-    {
-        int dir;
-        int rotation = GetCompass(room);
-        int RoomType = GetRoomType(room);
-        for (int i = 0; i < 4; i++)
-        {
-            dir = RelativeEntranceCoords[RoomType, i];
-            if (dir != 4)
-            {
-                dir = CoordRotation(dir, rotation);
-                if (CorridorHitsWall(sim, location, dir))
-                {
-                    return false;
-                }
-            }
-        }    
-        return true;
-    }
-
-    List<byte> GetPossibleRooms(byte[][] sim, coord location)
-    {
-        List<byte> result = new List<byte>();
-        for (int RoomType = 1; RoomType < 6; RoomType++)
-        {
-            for (int rotation = 0; rotation < 4; rotation++)
-            {
-                byte room = MakeRoom(rotation, RoomType);
-                if (RoomPlacementIsValid(sim, location, room))
-                {
-                    result.Add(room);
-                }
-            }
-        }
-        return result;
-    }
-
-    // Updates the open corridor count when new rooms are created.
-    // Given the coordinates of the newly created room.
-    void CountOpenCorridors(byte[][] sim, coord location)
-    {
-        byte room = sim[location.x][location.y];
-        int RoomType = (int) GetRoomType(room);
-        int[] RelativeExits = new int[4];
-        int[] RoomExits = new int[4];
-        for (int i  = 0; i < 4; i++)
-        {
-            RoomExits[i] = RelativeEntranceCoords[RoomType, i];
-            RelativeExits[i] = CoordRotation((int) GetCompass(room), RoomExits[i]);
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            if ((RelativeExits[i] <= 3) && (RelativeExits[i] >= 0))
-            {
-                coord NewCoord = location.add(CoordLookupTable[RelativeExits[i]]);
-                if (!RoomExistsAtCoordinates(sim, NewCoord))
-                {
-                    NumberOfOpenCorridors++;
-                }
-            }
-        }
-    }
-
-    void TrimPossibleRooms(List<byte> PossibleRooms)
-    {
-        List<byte> NewPossiblities = new List<byte>();
-        foreach (byte i in PossibleRooms) 
-        {
-            if (EntranceNumberSheet[GetRoomType(i)] - 1 <= (NumberOfRooms - RoomsSpawned))
-            {
-                NewPossiblities.Add(i);
-            }
-        }
-        PossibleRooms = NewPossiblities;
-    }
-
-    byte PickARoom(List<byte> PossibleRooms)
-    {
-        int HighestIndex = PossibleRooms.Count;
-        int Pick = UnityEngine.Random.Range(0, HighestIndex);
-        return PossibleRooms[Pick];
-    }
-
-    void SpawnRoomAt(byte[][] sim, coord location)
-    {
-        Debug.Log("Spawning room: " + RoomsSpawned + " at " + location.x + ", " + location.y); ;
-        List<byte> Possibilities = GetPossibleRooms(sim, location);
-        TrimPossibleRooms(Possibilities);
-        byte choice = PickARoom(Possibilities);
-        sim[location.x][location.y] = choice;
-        int RoomType = GetRoomType(choice);
-        for (int i = 0; i < 4; i++) 
-        {
-            int dir = RelativeEntranceCoords[RoomType, i];
-            if (dir < 4) 
-            {
-                coord offset = CoordLookupTable[CoordRotation(dir, GetCompass(choice))];
-                if (!RoomExistsAtCoordinates(sim, offset.add(location)))
-                {
-                    SpawnRoomAt(sim, offset.add(location));
-                }
-            }
-        }
-        RoomsSpawned++;
-    }
     void PrintSim(byte[][] sim)
     {
         string PrintOut = "";
@@ -264,11 +141,135 @@ public class RoomSpawn : MonoBehaviour
             PrintOut += i + ": ";
             for (int j = 0; j < SimSize; j++)
             {
-                PrintOut += sim[j][i];
+                PrintOut += "[" + sim[j][i] + "]";
             }
             PrintOut += '\n';
         }
         Debug.Log(PrintOut);
+    }
+
+    int ChooseRandomly()
+    {
+        /* Bit of a hack, when converting from float to int if the float is below a
+        * whole number the int it converts to gets rounded down (e.g. .99999 -> 0 or 1.999 -> 1).
+        * As Rooms spawned apporaches Number of rooms the ratio approaches 0.
+        * random.value returns a float between 0.0 and 1.0 so the more rooms spawned
+        * the lower the chance random.value + ratio is above 1.0.
+        */
+        float ratio = (float)RoomsSpawned / (float)NumberOfRooms;
+        ratio = 0.999f - ratio;
+        int result = (int)(UnityEngine.Random.value + ratio);
+        Debug.Log("The fates have decided " + result);
+        return result;
+    }
+
+    int OppositeSwizzle(byte room)
+    {
+        int result, holder;
+        holder = room & 0b_0000_0011;
+        holder = holder << 2;
+        result = room >> 2;
+        result = result | holder;
+        return result;
+    }
+
+    void MakeRoom(byte[][] sim, coord location)
+    {
+        Debug.Log("Spawning room: " + RoomsSpawned + " at " + location.x + ", " + location.y);
+
+        coord working;
+        int RoomType = 0;
+        working = location.add(CoordLookupTable[0]);
+        RoomType = RoomType | (OppositeSwizzle(sim[working.x][working.y]) & 0b_0000_1000);
+        working = location.add(CoordLookupTable[1]);
+        RoomType = RoomType | (OppositeSwizzle(sim[working.x][working.y]) & 0b_0000_0100);
+        working = location.add(CoordLookupTable[2]);
+        RoomType = RoomType | (OppositeSwizzle(sim[working.x][working.y]) & 0b_0000_0010);
+        working = location.add(CoordLookupTable[3]);
+        RoomType = RoomType | (OppositeSwizzle(sim[working.x][working.y]) & 0b_0000_0001);
+        Debug.Log("Required room shape: " + RoomType);
+        // Needed doors should be represented now.
+
+        List<coord> ToSpawn = new List<coord>();
+        int holder = 0;
+        // Case where no room is north
+        if ((RoomType & 0b_0000_1000) == 0) 
+        {
+            working = location.add(CoordLookupTable[0]);
+            Debug.Log("Room has no north neighbor");
+            holder = ChooseRandomly();
+            if ((holder == 1) && (sim[working.x][working.y] == 0))
+            {
+                RoomType = RoomType | 0b_0000_1000;
+                RoomsSpawned++;
+                ToSpawn.Add(CoordLookupTable[0]);
+            }
+        }
+        // Case where no room is East
+        if ((RoomType & 0b_0000_0100) == 0)
+        {
+            working = location.add(CoordLookupTable[1]);
+            Debug.Log("Room has no East neighbor");
+            holder = ChooseRandomly();
+            if ((holder == 1) && (sim[working.x][working.y] == 0))
+            {
+                RoomType = RoomType | 0b_0000_0100;
+                RoomsSpawned++;
+                ToSpawn.Add(CoordLookupTable[1]);
+            }
+        }
+        // Case where no room is South
+        if ((RoomType & 0b_0000_0010) == 0)
+        {
+            working = location.add(CoordLookupTable[2]);
+            Debug.Log("Room has no south neighbor");
+            holder = ChooseRandomly();
+            if ((holder == 1) && (sim[working.x][working.y] == 0))
+            {
+                RoomType = RoomType | 0b_0000_0010;
+                RoomsSpawned++;
+                ToSpawn.Add(CoordLookupTable[2]);
+            }
+        }
+        // Case where no room is West
+        if ((RoomType & 0b_0000_0001) == 0)
+        {
+            working = location.add(CoordLookupTable[3]);
+            Debug.Log("Room has no west neighbor");
+            holder = ChooseRandomly();
+            if ((holder == 1) && (sim[working.x][working.y] == 0))
+            {
+                RoomType = RoomType | 0b_0000_0001;
+                RoomsSpawned++;
+                ToSpawn.Add(CoordLookupTable[3]);
+            }
+        }
+
+        sim[location.x][location.y] = (byte)RoomType;
+        Debug.Log("Final room type: " + RoomType);
+        foreach(coord go in ToSpawn)
+        {
+            MakeRoom(sim, location.add(go));
+        }
+    }
+
+    void InstantiateSim(byte[][] sim, coord center)
+    {
+        int room;
+        coord location = new coord(0, 0);
+        for (int ys = 0; ys < SimSize; ys++)
+        {
+            for (int xs = 0; xs < SimSize; xs++)
+            {
+                location.x = xs;
+                location.y = ys;
+                room = sim[xs][ys];
+                if (room != 0)
+                {
+                    RoomLookupTable[room].spawn(location.sub(center));
+                }
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -289,14 +290,16 @@ public class RoomSpawn : MonoBehaviour
          * 4 - ThreeRoom
          * 5 - FourRoom
          */
-        Debug.Log("Making Sim");
+        Debug.Log("Making Sim " + SimSize + " in size with " + NumberOfRooms + " rooms.");
         byte[][] sim = MakeSimMatrix();
         coord center = new coord((SimSize / 2), (SimSize / 2));
-        sim[center.x][center.y] = 0b00000001;
+        sim[center.x][center.y] = 0b_0000_1000;
         Debug.Log("Spawning rooms");
-        SpawnRoomAt(sim, center.add(CoordLookupTable[0]));
+        RoomsSpawned++;
+        MakeRoom(sim, center.add(CoordLookupTable[0]));
         Debug.Log("Finished spawing rooms");
         PrintSim(sim);
+        InstantiateSim(sim, center);
     }
 
 }

@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572298931405812827}
   m_Layer: 0
-  m_Name: ThreeRoom - Copy
+  m_Name: 3_Normal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44005261502579986}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -143,7 +143,7 @@ Transform:
   - {fileID: 7949775626569959859}
   - {fileID: 8873273793283869269}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &282738361049738059
 GameObject:
   m_ObjectHideFlags: 0
