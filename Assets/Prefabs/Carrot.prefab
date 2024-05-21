@@ -163,4 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collect_noise: {fileID: 0}
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: afb00d72d74a27640b7dc73b745fd63f, type: 2}
