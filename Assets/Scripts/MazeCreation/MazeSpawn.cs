@@ -265,14 +265,17 @@ public class RoomSpawn : MonoBehaviour
             {
                 location.x = xs;
                 location.y = ys;
-                if (location.Equals(center) )
+                if (location.IsEqual(center) )
                 {
                     Instantiate(StartRoom, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
                 }
-                room = sim[xs][ys];
-                if (room != 0)
+                else 
                 {
-                    spawn(RoomLookupTable[room], location.sub(center));
+                    room = sim[xs][ys];
+                    if (room != 0)
+                    {
+                        spawn(RoomLookupTable[room], location.sub(center));
+                    }
                 }
             }
         }

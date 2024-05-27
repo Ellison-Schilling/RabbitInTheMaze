@@ -253,7 +253,7 @@ MonoBehaviour:
   TwoRoomBent: {fileID: 7609564218341098509, guid: 3179370695f7c7744b1be464b9f46683, type: 3}
   TwoRoomStraight: {fileID: 7609564218341098509, guid: a8cb33605736e9c4e9899c1dbce4237f, type: 3}
   OneRoom: {fileID: 7609564218341098509, guid: 5d5615f7038ae644abcde597f9adde0b, type: 3}
-  StartRoom: {fileID: 44005261502579986, guid: 8b5679555bb804aa497fb92331b4f2ce, type: 3}
+  StartRoom: {fileID: 6655982571599426701, guid: f3cd1c09c3c55514bbccd735adb2a606, type: 3}
 --- !u!4 &1510832025
 Transform:
   m_ObjectHideFlags: 0
