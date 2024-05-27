@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject Room3;
     public GameObject Room4;
 
-    List<GameObject> RoomList; 
+    List<GameObject> RoomList = new List<GameObject>(); 
     void Start()
     {
         if (Room1 != null) { RoomList.Add(Room1); }
@@ -18,8 +18,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (Room3 != null) { RoomList.Add(Room3); }
         if (Room4 != null) { RoomList.Add(Room4); }
 
-        int size = RoomList.Count;
-        int i = Random.Range(0, size);
+        int i = Random.Range(0, RoomList.Count);
         Instantiate(RoomList[i], gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
     }

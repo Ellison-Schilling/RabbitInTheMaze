@@ -18,6 +18,7 @@ public class RoomSpawn : MonoBehaviour
     public GameObject TwoRoomBent;
     public GameObject TwoRoomStraight;
     public GameObject OneRoom;
+    public GameObject StartRoom;
 
     // Used to keep track of number of corridors that do not lead into another room
     // starts at one as the starting room should only have one exit.
@@ -264,6 +265,10 @@ public class RoomSpawn : MonoBehaviour
             {
                 location.x = xs;
                 location.y = ys;
+                if (location.Equals(center) )
+                {
+                    Instantiate(StartRoom, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
+                }
                 room = sim[xs][ys];
                 if (room != 0)
                 {

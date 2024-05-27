@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963253807778764615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -171,7 +171,7 @@ Transform:
   - {fileID: 4870646158172601716}
   - {fileID: 3740805630062976490}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3633826743274036249
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +216,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497f4d840c16da84b80da5e0b5a7bfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfRooms: 0
+  RoomScale: 0
+  FourRoom: {fileID: 0}
+  ThreeRoom: {fileID: 0}
+  TwoRoomBent: {fileID: 0}
+  TwoRoomStraight: {fileID: 0}
+  OneRoom: {fileID: 0}
 --- !u!1 &3699510813202548956
 GameObject:
   m_ObjectHideFlags: 0

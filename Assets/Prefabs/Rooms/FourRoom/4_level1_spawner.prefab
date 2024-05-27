@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7610001423265387193}
   - component: {fileID: 6283606989869067170}
   m_Layer: 0
-  m_Name: TwoRoomStraightSpawner
+  m_Name: 4_level1_spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3640befb5f2054c48b0998113866c01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Room1: {fileID: 5964370114298187617, guid: d2e8efe4286a0944e9ed4b8e3a95ff08, type: 3}
+  Room1: {fileID: 44005261502579986, guid: 5d610ea5d8e3ae347b130550e94cbda6, type: 3}
+  Room2: {fileID: 44005261502579986, guid: ec2af45b0c55fe7449dbcfb0245faf44, type: 3}
+  Room3: {fileID: 0}
+  Room4: {fileID: 0}
