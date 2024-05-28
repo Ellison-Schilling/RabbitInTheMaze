@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement; // Required for SceneManager
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     int moving;
 
     public float max_speed;
+    public float sprint_boost;
     public float gravity;
 
     public KeyCollection key; //imports the KeyCollection script
@@ -36,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     private bool hasLost = false;
     public TextMeshProUGUI timerText;
 
+    public Image staminaBar;
+
+    public float stamina, maxStamina, sprintCost, ChargeRate;
+
+    private Coroutine recharge;
 
 
 
@@ -66,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             float minutes = Mathf.FloorToInt(time / 60);
             float seconds = Mathf.FloorToInt(time % 60);
             string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
-            timerText.text =  "Time: " + timeString;
+            timerText.text =  timeString;
             
         }
     void Start()
@@ -109,14 +116,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", moving);
             if (Input.GetAxis("Go") == 1)
             {
-                if (Input.GetAxis("Sprint") == 1)
+                if (Input.GetAxis("Sprint") == 1 && stamina > 0)
                 {
                     walkSteps.Stop();
                     if (!sprintSteps.isPlaying)
                     {
                         sprintSteps.Play();
                     }
-                    move = to_mouse * max_speed;
+                    move = to_mouse * max_speed * sprint_boost; 
+                    stamina -= sprintCost * Time.deltaTime;
+                    if (stamina <= 0) stamina = 0;
+                    staminaBar.fillAmount = stamina / maxStamina;
+                    if (recharge != null) StopCoroutine(recharge);
+                    recharge = StartCoroutine(rechargeStamina());
                 }
                 else
                 {
@@ -125,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         walkSteps.Play();
                     }
-                    move = to_mouse * max_speed * 0.5f;
+                    move = to_mouse * max_speed;
                 }
                 moving = 0;
             }
@@ -206,4 +218,15 @@ public class PlayerMovement : MonoBehaviour
         return max_speed;
     }
 
+    private IEnumerator rechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+        while (stamina < maxStamina)
+        {
+            stamina += ChargeRate / 10f;
+            if (stamina > maxStamina) stamina = maxStamina;
+            staminaBar.fillAmount = stamina / maxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
 }

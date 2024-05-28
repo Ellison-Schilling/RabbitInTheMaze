@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2889a532025984e1790041f4ecf459c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MazeGenerationTest
+  sceneName: Level2
 --- !u!1 &655740940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,7 +1919,7 @@ GameObject:
   - component: {fileID: 1974281441}
   - component: {fileID: 1974281440}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TitleScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
