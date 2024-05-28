@@ -152,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             hasKey = key.isKeyFound(); //check if the player has found the key
             
             if (Input.GetKeyDown("e")){
-                hasCarrot = InventoryManager.Instance.loopThroughList("Carrot"); //set to true if carrot in inventory
+                hasCarrot = OldInventoryManager.Instance.loopThroughList("Carrot"); //set to true if carrot in inventory
                 if (hasCarrot == true){
                     max_speed += 0.05f;
                     hasCarrot = false; //set to false until can check again

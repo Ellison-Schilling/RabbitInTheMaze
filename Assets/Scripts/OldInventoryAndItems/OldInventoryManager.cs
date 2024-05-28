@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class OldInventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
+    public static OldInventoryManager Instance;
     public List<Item> Items = new List<Item>();
     public int itemsInInventory = 0;
     public int capacity = 7;
