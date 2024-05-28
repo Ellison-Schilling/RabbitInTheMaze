@@ -6,8 +6,8 @@ public class KeyCollection : MonoBehaviour
 {
     public AudioSource collect_noise;
     public float rotationSpeed = 50f;
-    public GameObject gate_swing_right;
-    public GameObject gate_swing_left;
+    private GameObject gate_swing_right;
+    private GameObject gate_swing_left;
 
     static bool keyFound = false;
 
@@ -15,6 +15,8 @@ public class KeyCollection : MonoBehaviour
     void Start()
     {
         keyFound = false;
+        gate_swing_left = GameObject.FindWithTag("RightGate");
+        gate_swing_right = GameObject.FindWithTag("LeftGate");
     }
 
     // Update is called once per frame

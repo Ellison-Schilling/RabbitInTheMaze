@@ -10,6 +10,8 @@ TagManager:
   - enemy
   - carrot
   - KnockbackItem
+  - RightGate
+  - LeftGate
   layers:
   - Default
   - TransparentFX
