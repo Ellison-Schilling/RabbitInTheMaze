@@ -9,106 +9,37 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    CharacterController characterController;
-    Animator animator;
-    Transform m_Transform;
-    Vector3 to_mouse;
-    Vector3 move;
-    private float timer = 0f;
-    private float startTime;
-    private float currentTime;
-    float desired_Angle;
-    int moving;
-
-    public float max_speed;
-    public float sprint_boost;
-    public float gravity;
-
-    public KeyCollection key; //imports the KeyCollection script
-    public bool hasKey;
-    public bool hasCarrot;
-    public AudioSource walkSteps;
-    public AudioSource sprintSteps;
-    public AudioSource gameWon;
-    public AudioSource gameLost;
-    public GameObject winTextObject;
-    public GameObject winPanel;
-    public GameObject deathPanel;
-    private bool hasWon = false;
-    private bool hasLost = false;
-    public TextMeshProUGUI timerText;
-
-    public Image staminaBar;
-
-    public float stamina, maxStamina, sprintCost, ChargeRate;
-
+    private bool alive;
+    private CharacterController characterController;
+    private Animator animator;
+    private Transform m_Transform;
+    private Vector3 to_mouse;
+    private Vector3 move;
+    [SerializeField]private float desired_Angle;
+    private int moving;
+    [SerializeField] private float max_speed;
+    [SerializeField] private float sprint_boost;
+    [SerializeField] private float gravity;
+    [SerializeField] private AudioSource walkSteps;
+    [SerializeField] private AudioSource sprintSteps;
+    [SerializeField] private Image staminaBar;
+    [SerializeField] private float stamina, maxStamina, sprintCost, ChargeRate;
     private Coroutine recharge;
 
-
-
-    Vector3 getMouseVector()
-    {
-        Vector3 result;
-        Vector3 center_screen = new Vector3(0f, 0f, 0f);
-        center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
-        result = Input.mousePosition - center_screen;
-        result.Normalize();
-        return result;
-    }
-
-    float AngleFromVector(Vector3 vec)
-    {
-        float result;
-        result = (float)Math.Acos(to_mouse.y);
-        result = (180f / (float)Math.PI) * result;
-        if (to_mouse.x < 0)
-        {
-            result = result * -1;
-        }
-        return result;
-    }
- void UpdateTimerText(float time) 
-        {
-            // Set the counter text in the corner of the window to display the score
-            float minutes = Mathf.FloorToInt(time / 60);
-            float seconds = Mathf.FloorToInt(time % 60);
-            string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
-            timerText.text =  timeString;
-            
-        }
     void Start()
     {
+        alive = true;
         characterController = GetComponent<CharacterController>();
         m_Transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0);
         animator.SetBool("Is_Dead", false);
-        winTextObject.SetActive(false);
-        winPanel.SetActive(false);
-        deathPanel.SetActive(false);
-        startTime = Time.time;
     }
 
-    void toTitleScreen(float seconds)
-    {
-        timer += Time.deltaTime;
-        hasKey = false;
-        if (timer >= seconds) // Wait for 2 seconds
-        {
-            SceneManager.LoadScene("TitleScreen");
-            hasWon = false;
-            hasLost = false;
-        }
-    }
     void Update()
     {
-  
-        if (!hasLost)
+        if (alive)
         {
-            if (!hasWon){
-                currentTime = Time.time - startTime;
-                UpdateTimerText(currentTime);
-            }
             to_mouse = getMouseVector();
             desired_Angle = AngleFromVector(to_mouse);
             to_mouse.z = to_mouse.y;
@@ -148,33 +79,23 @@ public class PlayerMovement : MonoBehaviour
                 move = Vector3.zero;
                 moving = 1;
             }
-
-            hasKey = key.isKeyFound(); //check if the player has found the key
             
-            if (Input.GetKeyDown("e")){
-                hasCarrot = OldInventoryManager.Instance.loopThroughList("Carrot"); //set to true if carrot in inventory
-                if (hasCarrot == true){
-                    max_speed += 0.05f;
-                    hasCarrot = false; //set to false until can check again
-                }
+            if (Input.GetKeyDown("a")){
+                //use carrot
+            }
+            if (Input.GetKeyDown("s")){
+                //use col2
+            }
+            if (Input.GetKeyDown("d")){
+                //use col3
             }
 
-            if (hasWon)
-            {
-                toTitleScreen(5.0f);
-            }
-
-        }
-        else
-        {
-            toTitleScreen(3.0f);
         }
     }
 
-
     void FixedUpdate()
     {
-        if (!hasLost)
+        if (alive)
         {
             if (!characterController.isGrounded)
             {
@@ -183,34 +104,31 @@ public class PlayerMovement : MonoBehaviour
             characterController.Move(move);
         }
     }
+
     void OnAnimatorMove()
     {
         m_Transform.eulerAngles = new Vector3(0f, desired_Angle, 0f);
     }
-
-    private void OnTriggerEnter(Collider other)
+    Vector3 getMouseVector()
     {
-        if (other.gameObject.CompareTag("exit"))
+        Vector3 result;
+        Vector3 center_screen = new Vector3(0f, 0f, 0f);
+        center_screen.Set((Screen.width / 2), (Screen.height / 2), 0);
+        result = Input.mousePosition - center_screen;
+        result.Normalize();
+        return result;
+    }
+
+    float AngleFromVector(Vector3 vec)
+    {
+        float result;
+        result = (float)Math.Acos(to_mouse.y);
+        result = (180f / (float)Math.PI) * result;
+        if (to_mouse.x < 0)
         {
-            if (hasKey && !hasWon) // Then win game
-            {
-                gameWon.Play();
-                Debug.Log("You completed the maze!");
-                winTextObject.SetActive(true);
-                winPanel.SetActive(true);
-                hasWon = true;
-            }
+            result = result * -1;
         }
-        else if (other.gameObject.CompareTag("enemy"))
-        {
-            if (!hasWon && !hasLost)
-            {   //   Then lose game
-                gameLost.Play();
-                animator.SetBool("Is_Dead", true);
-                hasLost = true;
-                deathPanel.SetActive(true);
-            }
-        }
+        return result;
     }
 
     public float giveMaxSpeed()

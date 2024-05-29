@@ -19,7 +19,6 @@ public class KeyCollection : MonoBehaviour
         gate_swing_right = GameObject.FindWithTag("LeftGate");
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
