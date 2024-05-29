@@ -530,6 +530,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
       propertyPath: gameLost
       value: 
       objectReference: {fileID: 480051641}
@@ -554,9 +558,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1031194862}
     - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: ChargeRate
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
       propertyPath: deathPanel
       value: 
       objectReference: {fileID: 1629962462}
+    - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: maxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: sprintCost
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8853284793628280949, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
       propertyPath: sprintSteps
       value: 
@@ -1760,6 +1776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasCarrot: 0
+  hasLettuce: 0
   player: {fileID: 1468763788}
   IIC: {fileID: 0}
   inventoryObjects: []
