@@ -24,7 +24,7 @@ public class useItems : MonoBehaviour
             }
 
             foreach (GameObject obj in inventoryObjects){
-                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "Carrot"){
+                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[E] Carrot"){
                     Destroy(obj);
                     break;
                 }
@@ -32,11 +32,20 @@ public class useItems : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown("t")){
+        if (Input.GetKeyDown("r")){
             foreach (GameObject obj in inventoryObjects){
-                Debug.Log(obj.transform.Find("ItemName").GetComponent<Text>().text);
+                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[R] Pusher"){
+                    Destroy(obj);
+                    usePusher();
+                    break;
+                }
             }
         }
 
     }
+
+    public void usePusher(){
+
+    }
+
 }
