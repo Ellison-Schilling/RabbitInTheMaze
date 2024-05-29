@@ -2394,6 +2394,7 @@ MonoBehaviour:
   capacity: 7
   ItemContent: {fileID: 48290046}
   InventoryItem: {fileID: 4513680834601379576, guid: f5451e667ea359e4994265cd7fea8606, type: 3}
+  InventoryItems: []
 --- !u!4 &531002590
 Transform:
   m_ObjectHideFlags: 0
@@ -7676,6 +7677,18 @@ PrefabInstance:
     - target: {fileID: 2558492337465415431, guid: 5e9cd0ef5ee164e0a961a975c12406e7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800138812027845463, guid: 5e9cd0ef5ee164e0a961a975c12406e7, type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800138812027845463, guid: 5e9cd0ef5ee164e0a961a975c12406e7, type: 3}
+      propertyPath: MinDistance
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800138812027845463, guid: 5e9cd0ef5ee164e0a961a975c12406e7, type: 3}
+      propertyPath: rolloffMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4110971430822616805, guid: 5e9cd0ef5ee164e0a961a975c12406e7, type: 3}
       propertyPath: m_LocalPosition.x
