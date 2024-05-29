@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyGenerator : MonoBehaviour
@@ -7,12 +6,15 @@ public class KeyGenerator : MonoBehaviour
     [SerializeField] GameObject key;
     [SerializeField] Transform startPoint;
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.1f); // Delay execution by 0.5 seconds
+
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         Transform spawnRoom = startPoint;
         float newDistance, maxDistance = 0;
 
+        Debug.Log("Room Number " + allRooms.Length);
         for (int i = 0; i < allRooms.Length; i++)
         {
             newDistance = Vector3.Distance(startPoint.position, allRooms[i].transform.position);
@@ -27,4 +29,3 @@ public class KeyGenerator : MonoBehaviour
         Instantiate(key, spawnPosition, Quaternion.identity);
     }
 }
-
