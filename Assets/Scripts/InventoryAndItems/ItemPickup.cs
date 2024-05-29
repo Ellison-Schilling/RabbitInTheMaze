@@ -8,7 +8,7 @@ public class ItemPickup : MonoBehaviour
     public AudioSource collect_noise;
 
     void Pickup(){
-        OldInventoryManager.Instance.Add(item);
+        InventoryManager.Instance.Add(item);
         Destroy(gameObject);
     }
 

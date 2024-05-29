@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e7ddd9e3c1a19d4b8eaa7c9e5ea731d, type: 3}
-  m_Name: OldKnockbackItem
+  m_Name: KnockbackItem
   m_EditorClassIdentifier: 
-  itemName: KB
-  type: 1
+  itemName: KnockbackItem
+  type: 2
   icon: {fileID: 21300000, guid: 48ebff8d318e0294690cfd278b2efcbe, type: 3}

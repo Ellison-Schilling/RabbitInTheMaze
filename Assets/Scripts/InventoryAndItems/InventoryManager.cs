@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OldInventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    public static OldInventoryManager Instance;
+    public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
     public int itemsInInventory = 0;
     public int capacity = 7;
 
     public Transform ItemContent;
     public GameObject InventoryItem;
+
+    public InventoryItemController[] InventoryItems;
 
     private void Awake(){
         Instance = this;
@@ -23,8 +25,10 @@ public class OldInventoryManager : MonoBehaviour
         GameObject obj = Instantiate(InventoryItem, ItemContent);
         var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
         var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+        string tag = GameObject.Find("ItemName").GetComponent<Text>().text;
         itemName.text = item.itemName;
         itemIcon.sprite = item.icon;
+        obj.tag = "InvItem";
     }
 
     public void Remove(Item item){
@@ -48,4 +52,19 @@ public class OldInventoryManager : MonoBehaviour
         }
         return false;
     }
+
+    public void setInventoryItems(){
+
+        InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+
+        for(int i = 0; i < Items.Count; i++){
+            InventoryItems[i].AddItem(Items[i]);
+        }
+
+    }
+
+    void Update(){
+        //setInventoryItems(); 
+    }
+
 }

@@ -13,7 +13,7 @@ public class Item : ScriptableObject
 
 }
 
-public enum itemType{Carrot, Tool, Powerup}
+public enum itemType{Carrot, Powerup, Tool}
 //carrots do something tbd
-//tools are items that are used to affect enemies
 //powerups alter the behavior of the player
+//tools are items that are used to affect enemies
