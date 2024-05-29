@@ -725,6 +725,7 @@ GameObject:
   - component: {fileID: 95674028643950644}
   - component: {fileID: 5936656458654264993}
   - component: {fileID: 1628144187834467264}
+  - component: {fileID: 4841522860474706577}
   m_Layer: 6
   m_Name: Rabbit
   m_TagString: Untagged
@@ -742,7 +743,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4376261447206455811}
@@ -823,6 +824,37 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!114 &4841522860474706577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588090451174212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1605fe7f72ee94534a71f1883ad7f48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_speed: 0.3
+  sprint_boost: 1.75
+  gravity: 1
+  key: {fileID: 0}
+  hasKey: 0
+  hasCarrot: 0
+  walkSteps: {fileID: 0}
+  sprintSteps: {fileID: 0}
+  gameWon: {fileID: 0}
+  gameLost: {fileID: 0}
+  winTextObject: {fileID: 0}
+  winPanel: {fileID: 0}
+  deathPanel: {fileID: 0}
+  timerText: {fileID: 0}
+  staminaBar: {fileID: 0}
+  stamina: 0
+  maxStamina: 100
+  sprintCost: 25
+  ChargeRate: 33
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0

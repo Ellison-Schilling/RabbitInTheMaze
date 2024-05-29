@@ -9,7 +9,7 @@ public class useItems : MonoBehaviour
     public bool hasCarrot;
     public bool hasLettuce;
     public bool hasGoldenCarrot;
-    public PlayerMovement player;
+    public OldPlayerMovement player;
     public InventoryItemController IIC; //or use InventoryManager.Instance.InventoryItems ?
     public GameObject[] inventoryObjects;
 
