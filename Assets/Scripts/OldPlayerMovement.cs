@@ -24,7 +24,7 @@ public class OldPlayerMovement : MonoBehaviour
     public float sprint_boost;
     public float gravity;
 
-    public KeyCollection key; //imports the KeyCollection script
+    public KeyCollection key;
     public bool hasKey;
     public bool hasCarrot;
     public AudioSource walkSteps;
@@ -87,7 +87,18 @@ public class OldPlayerMovement : MonoBehaviour
         winPanel.SetActive(false);
         deathPanel.SetActive(false);
         startTime = Time.time;
+        StartCoroutine(WaitForKeyCollection());
     }
+
+    IEnumerator WaitForKeyCollection()
+    {
+        while (!key)
+        {
+            key = FindObjectOfType<KeyCollection>();
+            yield return null;
+        }
+    }
+
 
     void toTitleScreen(float seconds)
     {

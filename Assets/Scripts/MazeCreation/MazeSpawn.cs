@@ -11,14 +11,14 @@ using UnityEngine.UIElements;
 public class RoomSpawn : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int NumberOfRooms;
-    public float RoomScale;
-    public GameObject FourRoom;
-    public GameObject ThreeRoom;
-    public GameObject TwoRoomBent;
-    public GameObject TwoRoomStraight;
-    public GameObject OneRoom;
-    public GameObject StartRoom;
+    [SerializeField] int NumberOfRooms;
+    [SerializeField] float RoomScale;
+    [SerializeField] GameObject FourRoom;
+    [SerializeField] GameObject ThreeRoom;
+    [SerializeField] GameObject TwoRoomBent;
+    [SerializeField] GameObject TwoRoomStraight;
+    [SerializeField] GameObject OneRoom;
+    [SerializeField] GameObject StartRoom;
 
     // Used to keep track of number of corridors that do not lead into another room
     // starts at one as the starting room should only have one exit.
@@ -282,7 +282,7 @@ public class RoomSpawn : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         /* First four bits are Direction
          * Second four are room type

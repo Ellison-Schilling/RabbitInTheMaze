@@ -71,7 +71,7 @@ public class PlayerInventory : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("This doesn't seem useful to me...");
+                Debug.Log("What just happened???");
                 return;
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5166596538352080127}
   - component: {fileID: 1870336349740330152}
   m_Layer: 5
-  m_Name: TimerCanvas
+  m_Name: TimerScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
