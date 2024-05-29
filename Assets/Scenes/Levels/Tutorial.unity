@@ -3947,6 +3947,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: key
+      value: 
+      objectReference: {fileID: 1671902037}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: gameWon
+      value: 
+      objectReference: {fileID: 604001545}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: gameLost
+      value: 
+      objectReference: {fileID: 592668678}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: winPanel
+      value: 
+      objectReference: {fileID: 1314917907}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 6034466837952653014}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: walkSteps
+      value: 
+      objectReference: {fileID: 1370089175}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 1314917907}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 1732792272}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: sprintSteps
+      value: 
+      objectReference: {fileID: 82200576}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: winTextObject
+      value: 
+      objectReference: {fileID: 2042810413}
     - target: {fileID: 5936656458654264993, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -5890,6 +5934,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5354507050816822742, guid: 10701ba775d72e440b7e8daacffeb879, type: 3}
   m_PrefabInstance: {fileID: 1283745245}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1314917907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4398299019837269582, guid: 047b8ba2e1a2a4b9fb9eaeb148a7d9fb, type: 3}
+  m_PrefabInstance: {fileID: 959832154796897150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1315141779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7110,6 +7159,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4699672638386018644, guid: 2d57e6819ce9643d1aa66e710f7c22aa, type: 3}
   m_PrefabInstance: {fileID: 1401996329}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1671902037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3319376114285616345, guid: 2d57e6819ce9643d1aa66e710f7c22aa, type: 3}
+  m_PrefabInstance: {fileID: 1401996329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671902031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c4189b33e747f468b531ab0ad4559e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1686232597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9058,6 +9118,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2476844777630685281, guid: f2395e7491b295f4797689e098560288, type: 3}
   m_PrefabInstance: {fileID: 2007477365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2042810413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3666575762221109069, guid: a9769380e40294e4e9c9258297559af7, type: 3}
+  m_PrefabInstance: {fileID: 5915119203353557270}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2064137851
 PrefabInstance:
