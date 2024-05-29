@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
         GameObject obj = Instantiate(InventoryItem, ItemContent);
         var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
         var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-        string tag = GameObject.Find("ItemName").GetComponent<Text>().text;
+        //string tag = GameObject.Find("ItemName").GetComponent<Text>().text;
         itemName.text = item.itemName;
         itemIcon.sprite = item.icon;
         obj.tag = "InvItem";

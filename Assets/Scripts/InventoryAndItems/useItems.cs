@@ -38,7 +38,7 @@ public class useItems : MonoBehaviour
 
             hasLettuce = InventoryManager.Instance.loopThroughList("[F] Lettuce"); 
             if (hasLettuce == true){
-                player.stamina += 5f;
+                player.stamina += 33f;
                 hasLettuce = false; //set to false until can check again}
             }
 
@@ -55,7 +55,7 @@ public class useItems : MonoBehaviour
 
             hasGoldenCarrot = InventoryManager.Instance.loopThroughList("[G] Golden Carrot"); 
             if (hasGoldenCarrot == true){
-                player.max_speed += 0.05f;
+                player.max_speed += 0.06f;
                 hasGoldenCarrot = false; //set to false until can check again}
             }
 
