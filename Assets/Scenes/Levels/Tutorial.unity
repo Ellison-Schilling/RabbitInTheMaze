@@ -1182,6 +1182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777916587}
     m_Modifications:
+    - target: {fileID: -120981852433207901, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
+      propertyPath: collect_noise
+      value: 
+      objectReference: {fileID: 57608710}
     - target: {fileID: 7383663753485186418, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
       propertyPath: m_Name
       value: Carrot2
@@ -3694,6 +3698,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777916587}
     m_Modifications:
+    - target: {fileID: -120981852433207901, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
+      propertyPath: collect_noise
+      value: 
+      objectReference: {fileID: 57608710}
     - target: {fileID: 7383663753485186418, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
       propertyPath: m_Name
       value: Carrot1
@@ -5823,6 +5831,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777916587}
     m_Modifications:
+    - target: {fileID: -120981852433207901, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
+      propertyPath: collect_noise
+      value: 
+      objectReference: {fileID: 57608710}
     - target: {fileID: 7383663753485186418, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
       propertyPath: m_Name
       value: Carrot4
@@ -6857,6 +6869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1777916587}
     m_Modifications:
+    - target: {fileID: -120981852433207901, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
+      propertyPath: collect_noise
+      value: 
+      objectReference: {fileID: 57608710}
     - target: {fileID: 7383663753485186418, guid: 9ff9030859091c747b4db50e4df3c11a, type: 3}
       propertyPath: m_Name
       value: Carrot3
