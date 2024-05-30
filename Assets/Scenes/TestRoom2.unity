@@ -595,6 +595,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      propertyPath: key
+      value: 
+      objectReference: {fileID: 1453631332}
+    - target: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
       propertyPath: gameWon
       value: 
       objectReference: {fileID: 480051641}
@@ -1945,6 +1949,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collect_noise: {fileID: 0}
   rotationSpeed: 50
+--- !u!114 &1453631332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3319376114285616345, guid: 2d57e6819ce9643d1aa66e710f7c22aa, type: 3}
+  m_PrefabInstance: {fileID: 1862120479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453631329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c4189b33e747f468b531ab0ad4559e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1468763780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1588090451174212, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
@@ -1970,9 +1985,20 @@ MonoBehaviour:
   hasCarrot: 0
   hasLettuce: 0
   hasGoldenCarrot: 0
-  player: {fileID: 0}
+  player: {fileID: 1468763791}
   IIC: {fileID: 0}
   inventoryObjects: []
+--- !u!114 &1468763791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4841522860474706577, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+  m_PrefabInstance: {fileID: 412235960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468763780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1605fe7f72ee94534a71f1883ad7f48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1514231897
 PrefabInstance:
   m_ObjectHideFlags: 0
