@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9166397116338143668}
   - component: {fileID: 5385741120126581001}
   - component: {fileID: 6778203637744739228}
+  - component: {fileID: 34614652408451561}
   m_Layer: 0
   m_Name: GoldenCarrot
-  m_TagString: Untagged
+  m_TagString: GoldenCarrot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,3 +136,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &34614652408451561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477537848238839526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a1d5ba37e4f4e8e8b1b606b60bcdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50

@@ -23,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CarrotCountDisplay;
     [SerializeField] private TextMeshProUGUI GoldenCarrotCountDisplay;
     [SerializeField] private TextMeshProUGUI CabbageCountDisplay;
+    [SerializeField] private AudioSource general_collect_noise;
+    [SerializeField] private AudioSource key_collect_noise;
 
     void Start()
     {
@@ -39,22 +41,22 @@ public class PlayerInventory : MonoBehaviour
         {
             case "carrot":
                 carrotCount++;
-                // play pick up carrot sound
+                general_collect_noise.Play(); 
                 CarrotCountDisplay.text = string.Format("{0}", carrotCount);
                 break;
             case "goldenCarrot":
                 goldenCarrotCount++;
-                // play pick up golden carrot sound
+                general_collect_noise.Play(); 
                 GoldenCarrotCountDisplay.text = string.Format("{0}", goldenCarrotCount);
                 break;
             case "cabbage":
                 cabbageCount++;
-                // play pick up cabbage sound
+                general_collect_noise.Play(); 
                 CabbageCountDisplay.text = string.Format("{0}", cabbageCount);
                 break;
             case "key":
-                // play pick up key sound
                 keyCount++;
+                key_collect_noise.Play(); 
                 break;
             default:
                 Debug.Log("This doesn't seem useful to me...");

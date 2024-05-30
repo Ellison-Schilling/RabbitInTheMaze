@@ -37,15 +37,15 @@ public class PlayerCollisions : MonoBehaviour
                 break;
             case "Carrot":
                 playerInventroy.AddItem("carrot");
-                Destroy(other.transform.parent.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "GoldenCarrot":
                 playerInventroy.AddItem("goldenCarrot");
-                Destroy(other.transform.parent.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "Cabbage":
                 playerInventroy.AddItem("cabbage");
-                Destroy(other.transform.parent.gameObject);
+                Destroy(other.gameObject);
                 break;
             case "Key":
                 playerInventroy.AddItem("key");
