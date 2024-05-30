@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 8340581104843237195}
   - component: {fileID: 6866406521226053801}
   - component: {fileID: -1053044499941780366}
-  - component: {fileID: 7186006073221848880}
-  - component: {fileID: -8394765102794711310}
   m_Layer: 0
   m_Name: KnockbackItem
   m_TagString: KnockbackItem
@@ -135,30 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7186006073221848880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286503150070950793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797d1d2e78e35cc4092392457a0bdb4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 1905827f773f8bb4f85b844082f3116c, type: 2}
---- !u!114 &-8394765102794711310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286503150070950793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61f93b515dca3e45af3a1d10e8e8fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collect_noise: {fileID: 0}
-  item: {fileID: 11400000, guid: 1905827f773f8bb4f85b844082f3116c, type: 2}

@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3490993324063418295}
   - component: {fileID: 5318228419880772733}
   - component: {fileID: 4237858322266722177}
-  - component: {fileID: 6626569405019363404}
-  - component: {fileID: 864979944866465963}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Untagged
@@ -135,30 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6626569405019363404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967027428463253936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797d1d2e78e35cc4092392457a0bdb4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 98eaebde8faa46048ac837a907a375f2, type: 2}
---- !u!114 &864979944866465963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967027428463253936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61f93b515dca3e45af3a1d10e8e8fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collect_noise: {fileID: 0}
-  item: {fileID: 11400000, guid: 98eaebde8faa46048ac837a907a375f2, type: 2}

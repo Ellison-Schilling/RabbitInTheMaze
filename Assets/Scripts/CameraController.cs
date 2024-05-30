@@ -22,5 +22,7 @@ public class CameraController : MonoBehaviour
     {
         // Maintain the same offset between the camera and player throughout the game.
         transform.position = player.transform.position + offset;
+        // Ensure the camera's rotation remains unchanged.
+        transform.rotation = Quaternion.Euler(75, 0, 0);
     }
 }

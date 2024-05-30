@@ -8,7 +8,7 @@ public class KeyGenerator : MonoBehaviour
 
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(0.1f); // Delay execution by 0.5 seconds
+        yield return new WaitForSeconds(0.1f);
 
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         Transform spawnRoom = startPoint;
@@ -26,6 +26,6 @@ public class KeyGenerator : MonoBehaviour
         }
 
         Vector3 spawnPosition = spawnRoom.position + Vector3.up * 0.5f;
-        Instantiate(key, spawnPosition, Quaternion.identity);
+        GameObject newKey = Instantiate(key, spawnPosition, Quaternion.identity);
     }
 }

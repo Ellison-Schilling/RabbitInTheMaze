@@ -8,19 +8,29 @@ using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private int keys;
-    private int carrots;
-    private int collectables2;
-    private int collectables3;
+    [SerializeField] private GameObject Player;
+    private PlayerController player;
+    [SerializeField] private float carrotSpeedBoost;
+    [SerializeField] private float goldenCarrotSpeedBoost;
+    [SerializeField] private float cabbageStaminaBoost;
+    [SerializeField] private float carrotTimer;
+    [SerializeField] private float goldenCarrotTimer;
+    [SerializeField] private float cabbageTimer;
+    private int keyCount;
+    private int carrotCount;
+    private int goldenCarrotCount;
+    private int cabbageCount;
     [SerializeField] private TextMeshProUGUI CarrotCountDisplay;
-    [SerializeField] private TextMeshProUGUI Col2CountDisplay;
-    [SerializeField] private TextMeshProUGUI Col3CountDisplay;
+    [SerializeField] private TextMeshProUGUI GoldenCarrotCountDisplay;
+    [SerializeField] private TextMeshProUGUI CabbageCountDisplay;
+
     void Start()
     {
-        keys = 0;
-        carrots = 0;
-        collectables2 = 0;
-        collectables3 = 0;
+        player = Player.GetComponent<PlayerController>();
+        keyCount = 0;
+        carrotCount = 0;
+        goldenCarrotCount = 0;
+        cabbageCount = 0;
     }
 
     public void AddItem(string type)
@@ -28,16 +38,23 @@ public class PlayerInventory : MonoBehaviour
         switch (type)
         {
             case "carrot":
-                carrots++;
+                carrotCount++;
+                // play pick up carrot sound
+                CarrotCountDisplay.text = string.Format("{0}", carrotCount);
                 break;
-            case "2...":
-                collectables2++;
+            case "goldenCarrot":
+                goldenCarrotCount++;
+                // play pick up golden carrot sound
+                GoldenCarrotCountDisplay.text = string.Format("{0}", goldenCarrotCount);
                 break;
-            case "3...":
-                collectables3++;
+            case "cabbage":
+                cabbageCount++;
+                // play pick up cabbage sound
+                CabbageCountDisplay.text = string.Format("{0}", cabbageCount);
                 break;
             case "key":
-                keys++;
+                // play pick up key sound
+                keyCount++;
                 break;
             default:
                 Debug.Log("This doesn't seem useful to me...");
@@ -50,24 +67,27 @@ public class PlayerInventory : MonoBehaviour
         switch (type)
         {
             case "carrot":
-                if(carrots > 0)
+                if(carrotCount > 0)
                 {
-                    carrots--;
+                    carrotCount--;
+                    CarrotCountDisplay.text = string.Format("{0}", carrotCount);
                     CarrotEffect();
                 }
                 break;
-            case "2...":
-                if(collectables2 > 0)
+            case "goldenCarrot":
+                if(goldenCarrotCount > 0)
                 {
-                    collectables2--;
-                    OtherEffect2();
+                    goldenCarrotCount--;
+                    GoldenCarrotCountDisplay.text = string.Format("{0}", goldenCarrotCount);
+                    GoldenCarrotEffect();
                 }
                 break;
-            case "3...":
-                if(collectables3 > 0)
+            case "cabbage":
+                if(cabbageCount > 0)
                 {
-                    collectables3--;
-                    OtherEffect3();
+                    cabbageCount--;
+                    CabbageCountDisplay.text = string.Format("{0}", cabbageCount);
+                    CabbageEffect();
                 }
                 break;
             default:
@@ -81,30 +101,62 @@ public class PlayerInventory : MonoBehaviour
         switch (type)
         {
             case "carrot":
-                return carrots;
-            case "2...":
-                return collectables2;
-            case "3...":
-                return collectables3;
+                return carrotCount;
+            case "goldenCarrot":
+                return goldenCarrotCount;
+            case "cabbage":
+                return cabbageCount;
             case "key":
-                return keys;
+                return keyCount;
             default:
                 Debug.Log("What are you looking for?");
                 return 0;
         }
     }
-    void CarrotEffect()
+    private void CarrotEffect()
     {
+        // play audio for using a carrot
+        float newMaxSpeed = player.GetMaxSpeed();
+        newMaxSpeed*=carrotSpeedBoost;
+        player.SetMaxSpeed(newMaxSpeed);
+        StartCoroutine(ReturnSpeed(carrotSpeedBoost, carrotTimer));
         return;
     }
 
-    void OtherEffect2()
+    private void GoldenCarrotEffect()
     {
+        // play audio for using a golden carrot
+        float newMaxSpeed = player.GetMaxSpeed();
+        newMaxSpeed*=goldenCarrotSpeedBoost;
+        player.SetMaxSpeed(newMaxSpeed);
+        StartCoroutine(ReturnSpeed(goldenCarrotSpeedBoost, goldenCarrotTimer));
         return;
     }
 
-    void OtherEffect3()
+    private void CabbageEffect()
     {
+        // play audio for using a cabbage
+        float newSprintCost = player.GetSprintCost();
+        newSprintCost*=cabbageStaminaBoost;
+        player.SetMaxSpeed(newSprintCost);
+        StartCoroutine(ReturnStamina(cabbageStaminaBoost, cabbageTimer));
         return;
+    }
+
+    IEnumerator ReturnSpeed(float delta, float timer)
+    {
+
+        yield return new WaitForSeconds(timer);
+        float newMaxSpeed = player.GetMaxSpeed();
+        newMaxSpeed/=delta;
+        player.SetMaxSpeed(newMaxSpeed);
+    }
+
+    IEnumerator ReturnStamina(float delta, float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        float newSprintCost = player.GetSprintCost();
+        newSprintCost/=delta;
+        player.SetSprintCost(newSprintCost);
     }
 }

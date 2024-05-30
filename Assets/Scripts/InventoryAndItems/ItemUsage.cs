@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemUsage : MonoBehaviour
 {
 
-    private PlayerMovement player;
+    private OldPlayerMovement player;
 
     // Start is called before the first frame update
     void Start()

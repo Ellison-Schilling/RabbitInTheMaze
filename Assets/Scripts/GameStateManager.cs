@@ -9,6 +9,10 @@ using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Timer;
+    private PlayerController player;
+    private Timer timer;
     [SerializeField] private GameObject winText, winPanel, deathPanel;
     [SerializeField] private AudioSource gameWon, gameLost;
     private int gameState;
@@ -19,9 +23,11 @@ public class GameStateManager : MonoBehaviour
         winPanel.SetActive(false);
         deathPanel.SetActive(false);
         gameState = 0;
+        player = Player.GetComponent<PlayerController>();
+        timer = Timer.GetComponent<Timer>();
     }
 
-    void SetGameState(string state)
+    public void SetGameState(string state)
     {
         switch (state)
         {
@@ -49,24 +55,24 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    void Win()
+    private void Win()
     {
-        gameState = 1;
         Debug.Log("You completed the maze!");
         gameWon.Play();
         winText.SetActive(true);
         winPanel.SetActive(true);
-        toTitleScreen(5.0f);
+        StartCoroutine(TimeTitleScreen(5.0f));
+        gameState = 1;
     }
 
-    void Lose()
+    private void Lose()
     {
-        gameState = -1;
         Debug.Log("Womp womp, you died...");
         gameLost.Play();
-        //animator.SetBool("Is_Dead", true);
+        player.Dies();
         deathPanel.SetActive(true);
-        toTitleScreen(3.0f);
+        StartCoroutine(TimeTitleScreen(3.0f));
+        gameState = -1;
     }
 
     public int GetState()
@@ -74,11 +80,9 @@ public class GameStateManager : MonoBehaviour
         return gameState;
     }
 
-    void toTitleScreen(float seconds)
+    IEnumerator TimeTitleScreen(float timer)
     {
-        float timer = 0;
-        while (timer < seconds)
-            timer += Time.deltaTime;
+        yield return new WaitForSeconds(timer);
         SceneManager.LoadScene("TitleScreen");
     }
 
