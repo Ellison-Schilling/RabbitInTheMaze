@@ -139,8 +139,8 @@ public class PlayerInventory : MonoBehaviour
     {
         // play audio for using a cabbage
         float newSprintCost = player.GetSprintCost();
-        newSprintCost*=cabbageStaminaBoost;
-        player.SetMaxSpeed(newSprintCost);
+        newSprintCost/=cabbageStaminaBoost;
+        player.SetSprintCost(newSprintCost);
         StartCoroutine(ReturnStamina(cabbageStaminaBoost, cabbageTimer));
         return;
     }
@@ -158,7 +158,7 @@ public class PlayerInventory : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         float newSprintCost = player.GetSprintCost();
-        newSprintCost/=delta;
+        newSprintCost*=delta;
         player.SetSprintCost(newSprintCost);
     }
 }

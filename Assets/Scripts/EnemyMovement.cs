@@ -8,11 +8,11 @@ public class enemyMovement : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public Vector3 walkPoint;
+    private Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
     public float sightRange;
-    public bool playerInSight;
+    private bool playerInSight;
 
     void Awake()
     {

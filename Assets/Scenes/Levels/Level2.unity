@@ -292,14 +292,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497f4d840c16da84b80da5e0b5a7bfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfRooms: 10
+  NumberOfRooms: 24
   RoomScale: 100
-  FourRoom: {fileID: 7609564218341098509, guid: 0addf2f88be71db4184d3e3f31470fff, type: 3}
-  ThreeRoom: {fileID: 7609564218341098509, guid: 2e1d64e1adfb41544ac4774585f9cc7e, type: 3}
-  TwoRoomBent: {fileID: 7609564218341098509, guid: 3179370695f7c7744b1be464b9f46683, type: 3}
-  TwoRoomStraight: {fileID: 7609564218341098509, guid: a8cb33605736e9c4e9899c1dbce4237f, type: 3}
-  OneRoom: {fileID: 7609564218341098509, guid: 5d5615f7038ae644abcde597f9adde0b, type: 3}
-  StartRoom: {fileID: 6655982571599426701, guid: 3d238333e531a4091b2453550d817223, type: 3}
+  FourRoom: {fileID: 7609564218341098509, guid: 65e42be1aa3d348879e4f13ae71ca6ac, type: 3}
+  ThreeRoom: {fileID: 7609564218341098509, guid: c9e1094da63de40309b74d4bcc04416a, type: 3}
+  TwoRoomBent: {fileID: 7609564218341098509, guid: b5005b8a0362d4c89996be0905a19d97, type: 3}
+  TwoRoomStraight: {fileID: 7609564218341098509, guid: 061f9f836875e4d4a8959a3d5131a667, type: 3}
+  OneRoom: {fileID: 7609564218341098509, guid: 89cbb79bc1bda4fa2aa5b84953ccaeb9, type: 3}
+  StartRoom: {fileID: 6655982571599426701, guid: 7a3aab50808c744fd9e29b82988e4159, type: 3}
 --- !u!4 &1510832025
 Transform:
   m_ObjectHideFlags: 0

@@ -888,6 +888,8 @@ MonoBehaviour:
   CarrotCountDisplay: {fileID: 0}
   GoldenCarrotCountDisplay: {fileID: 0}
   CabbageCountDisplay: {fileID: 0}
+  general_collect_noise: {fileID: 0}
+  key_collect_noise: {fileID: 0}
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,8 +1382,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7790566299160546818}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.60876137, y: -0, z: -0, w: 0.7933534}
-  m_LocalPosition: {x: 0, y: 4.5, z: -1.25}
+  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: 6, z: -1.3}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
