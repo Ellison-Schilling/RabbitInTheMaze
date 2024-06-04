@@ -61,6 +61,8 @@ public class GameStateManager : MonoBehaviour
         gameWon.Play();
         winText.SetActive(true);
         winPanel.SetActive(true);
+        timer.PauseTimer();
+        //Debug.Log(timer.timer);
         StartCoroutine(TimeTitleScreen(5.0f));
         gameState = 1;
     }
@@ -71,6 +73,8 @@ public class GameStateManager : MonoBehaviour
         gameLost.Play();
         player.Dies();
         deathPanel.SetActive(true);
+        timer.PauseTimer();
+        Debug.Log("time is " + timer.GetTime());
         StartCoroutine(TimeTitleScreen(3.0f));
         gameState = -1;
     }

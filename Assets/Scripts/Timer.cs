@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if(!paused)
+        if (!paused)
         {
             timer = Time.time - start - timePaused;
             float minutes = Mathf.FloorToInt(timer / 60);
@@ -38,5 +38,11 @@ public class Timer : MonoBehaviour
     public void PauseTimer()
     {
         paused = true;
+    }
+
+    public float GetTime()
+    {
+        float result = timer;
+        return result;
     }
 }
