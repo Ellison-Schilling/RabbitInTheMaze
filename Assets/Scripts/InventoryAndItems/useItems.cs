@@ -69,7 +69,7 @@ public class useItems : MonoBehaviour
 
         if (Input.GetKeyDown("r")){
             foreach (GameObject obj in inventoryObjects){
-                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[R] Pusher"){
+                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[R] Knockback"){
                     Destroy(obj);
                     usePusher();//IMPLEMENT!
                     break;
