@@ -2830,6 +2830,10 @@ PrefabInstance:
       propertyPath: ItemContent
       value: 
       objectReference: {fileID: 832250077857684596}
+    - target: {fileID: 8656382007183526478, guid: 05db800220e9f3c418836a3d57f18df0, type: 3}
+      propertyPath: InventoryItem
+      value: 
+      objectReference: {fileID: 4513680834601379576, guid: f5451e667ea359e4994265cd7fea8606, type: 3}
     - target: {fileID: 9064974880344846994, guid: 05db800220e9f3c418836a3d57f18df0, type: 3}
       propertyPath: m_Name
       value: InventoryManager
