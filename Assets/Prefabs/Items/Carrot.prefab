@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3424490387978128711}
   - component: {fileID: -3973696404049765274}
   - component: {fileID: 785856114408478108}
+  - component: {fileID: 8818891786687099441}
+  - component: {fileID: -8777728192428912482}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -149,3 +151,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+--- !u!114 &8818891786687099441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383663753485186418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de81da848bb1e24c8cc22e155fbd56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 67f04e0b4ca89d645af8be2cab50dede, type: 2}
+--- !u!114 &-8777728192428912482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383663753485186418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61f93b515dca3e45af3a1d10e8e8fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collect_noise: {fileID: 0}
+  item: {fileID: 11400000, guid: 67f04e0b4ca89d645af8be2cab50dede, type: 2}

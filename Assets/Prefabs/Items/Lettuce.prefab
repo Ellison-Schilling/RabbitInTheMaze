@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5318228419880772733}
   - component: {fileID: 4237858322266722177}
   - component: {fileID: 4760676696423534690}
+  - component: {fileID: -2623836499229248654}
+  - component: {fileID: 894539868189236011}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Cabbage
@@ -147,3 +149,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+--- !u!114 &-2623836499229248654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967027428463253936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de81da848bb1e24c8cc22e155fbd56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 98eaebde8faa46048ac837a907a375f2, type: 2}
+--- !u!114 &894539868189236011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967027428463253936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61f93b515dca3e45af3a1d10e8e8fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collect_noise: {fileID: 0}
+  item: {fileID: 11400000, guid: 98eaebde8faa46048ac837a907a375f2, type: 2}
