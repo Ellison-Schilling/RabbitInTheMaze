@@ -37,7 +37,12 @@ public class useItems : MonoBehaviour
 
             hasLettuce = InventoryManager.Instance.loopThroughList("[F] Lettuce"); 
             if (hasLettuce == true){
-                player.stamina += 33f;
+                if (player.stamina + 33f > player.maxStamina){
+                    player.stamina = player.maxStamina;
+                }
+                else {
+                    player.stamina += 33f;
+                }
                 hasLettuce = false; //set to false until can check again}
             }
 

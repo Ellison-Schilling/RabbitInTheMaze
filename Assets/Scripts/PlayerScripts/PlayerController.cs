@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource walkSteps;
     [SerializeField] private AudioSource sprintSteps;
     [SerializeField] private Image staminaBar;
-    [SerializeField] public float stamina;
-    [SerializeField] private float maxStamina, sprintCost, chargeRate;
+    [SerializeField] public float stamina, maxStamina;
+    [SerializeField] private float sprintCost, chargeRate;
     private Coroutine recharge;
 
     void Start()
