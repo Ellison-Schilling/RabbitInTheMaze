@@ -6342,8 +6342,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1588090451174212, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4323325218742848944}
   m_SourcePrefab: {fileID: 100100000, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+--- !u!114 &3764015281319215368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5461677476128853743, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
+  m_PrefabInstance: {fileID: 9221033713285271527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219454556406262947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122a900309f6d41b6aaebab13c44c889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9216387028752564111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4677745771901032, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
@@ -6354,3 +6368,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1588090451174212, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
   m_PrefabInstance: {fileID: 9221033713285271527}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4323325218742848944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219454556406262947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ca0617e14b60f4bbf998d524f059e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasCarrot: 0
+  hasLettuce: 0
+  hasGoldenCarrot: 0
+  player: {fileID: 3764015281319215368}
+  IIC: {fileID: 0}
+  inventoryObjects: []

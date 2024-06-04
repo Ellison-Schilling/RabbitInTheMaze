@@ -19,13 +19,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 move;
     private float desiredAngle;
     private int moving;
-    [SerializeField] private float maxSpeed;
+    [SerializeField] public float maxSpeed;
     [SerializeField] private float sprintBoost;
     [SerializeField] private float gravity;
     [SerializeField] private AudioSource walkSteps;
     [SerializeField] private AudioSource sprintSteps;
     [SerializeField] private Image staminaBar;
-    [SerializeField] private float stamina, maxStamina, sprintCost, chargeRate;
+    [SerializeField] public float stamina;
+    [SerializeField] private float maxStamina, sprintCost, chargeRate;
     private Coroutine recharge;
 
     void Start()

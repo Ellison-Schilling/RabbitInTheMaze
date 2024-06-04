@@ -9,8 +9,7 @@ public class useItems : MonoBehaviour
     public bool hasCarrot;
     public bool hasLettuce;
     public bool hasGoldenCarrot;
-    public OldPlayerMovement player;
-    public InventoryItemController IIC; //or use InventoryManager.Instance.InventoryItems ?
+    public PlayerController player;
     public GameObject[] inventoryObjects;
 
     void Update(){
@@ -21,7 +20,7 @@ public class useItems : MonoBehaviour
 
             hasCarrot = InventoryManager.Instance.loopThroughList("[E] Carrot"); //set to true if carrot in inventory
             if (hasCarrot == true){
-                player.max_speed += 0.03f;
+                player.maxSpeed += 0.01f;
                 hasCarrot = false; //set to false until can check again}
             }
 
@@ -55,7 +54,7 @@ public class useItems : MonoBehaviour
 
             hasGoldenCarrot = InventoryManager.Instance.loopThroughList("[G] Golden Carrot"); 
             if (hasGoldenCarrot == true){
-                player.max_speed += 0.06f;
+                player.maxSpeed += 0.02f;
                 hasGoldenCarrot = false; //set to false until can check again}
             }
 
