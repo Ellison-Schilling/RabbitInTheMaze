@@ -728,6 +728,7 @@ GameObject:
   - component: {fileID: 5461677476128853743}
   - component: {fileID: 3782422437379823258}
   - component: {fileID: 4581897472841274514}
+  - component: {fileID: 6049546604558492534}
   m_Layer: 6
   m_Name: Rabbit
   m_TagString: Player
@@ -890,6 +891,19 @@ MonoBehaviour:
   CabbageCountDisplay: {fileID: 0}
   general_collect_noise: {fileID: 0}
   key_collect_noise: {fileID: 0}
+--- !u!114 &6049546604558492534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588090451174212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d7d15cebc711446b572b7277f8b684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 1653643180320150775, guid: bc780366f88414449917c9d0d991ede4, type: 3}
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0

@@ -1749,8 +1749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collect_noise: {fileID: 0}
   rotationSpeed: 50
-  gate_swing_right: {fileID: 0}
-  gate_swing_left: {fileID: 0}
 --- !u!1 &1468763780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1588090451174212, guid: c737dd230724d61469e1c672cf47ed9e, type: 3}
@@ -1944,6 +1942,7 @@ MonoBehaviour:
   capacity: 7
   ItemContent: {fileID: 666905319}
   InventoryItem: {fileID: 4513680834601379576, guid: f5451e667ea359e4994265cd7fea8606, type: 3}
+  InventoryItems: []
 --- !u!4 &1845300351
 Transform:
   m_ObjectHideFlags: 0

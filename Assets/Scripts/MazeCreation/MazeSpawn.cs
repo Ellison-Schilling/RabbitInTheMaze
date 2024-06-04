@@ -19,6 +19,7 @@ public class RoomSpawn : MonoBehaviour
     [SerializeField] GameObject TwoRoomStraight;
     [SerializeField] GameObject OneRoom;
     [SerializeField] GameObject StartRoom;
+    public GameObject minimapTile;
 
     // Used to keep track of number of corridors that do not lead into another room
     // starts at one as the starting room should only have one exit.
@@ -281,6 +282,24 @@ public class RoomSpawn : MonoBehaviour
         }
     }
 
+    void InstantiateMinimap(byte[][] sim, coord center)
+    {
+        UnityEngine.Vector3 Offset = new UnityEngine.Vector3(10100f, 0f, 10100f);
+        UnityEngine.Vector3 location = new UnityEngine.Vector3();
+        for (int ys = 0; ys < SimSize; ys++)
+        {
+            for (int xs = 0; xs < SimSize; xs++)
+            {
+                if (sim[xs][ys] != 0)
+                {
+                    location.x = (float)xs - center.x;
+                    location.z = (float)ys - center.y;
+                    Instantiate(minimapTile, location + Offset, UnityEngine.Quaternion.identity);
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -309,6 +328,7 @@ public class RoomSpawn : MonoBehaviour
         Debug.Log("Finished spawing rooms");
         PrintSim(sim);
         InstantiateSim(sim, center);
+        InstantiateMinimap(sim, center);
     }
 
 }
