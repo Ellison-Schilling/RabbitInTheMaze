@@ -12,11 +12,12 @@ public class MiniMover : MonoBehaviour
     Vector3 modelPosition = new Vector3();
 
     Vector3 offset = new Vector3(10100f, 0f, 10100f);
+    float scale = .01f;
 
 
     void updatePosition()
     {
-        realPosition = (gameObject.transform.position) * .01f;
+        realPosition = (gameObject.transform.position) * scale;
         modelPosition = realPosition + offset;
     }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1402771132544797290}
   - component: {fileID: 6993185997373578843}
   - component: {fileID: 1726272721906608391}
+  - component: {fileID: 4558124551887914873}
   m_Layer: 0
   m_Name: rust_key
   m_TagString: Key
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+--- !u!114 &4558124551887914873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690820034808773130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d171cf754e9bdd4ab74219a6ae133a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabKey: {fileID: 370213824078828965, guid: 4bc3bea613ef31a4e912c95c55d01f25, type: 3}
