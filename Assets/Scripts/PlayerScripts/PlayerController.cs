@@ -84,11 +84,11 @@ public class PlayerController : MonoBehaviour
                 moving = 1;
             }
             
-            if (Input.GetKeyDown("a"))
+            if (Input.GetKeyDown("e"))
                 inventory.UseItem("carrot");
-            if (Input.GetKeyDown("s"))
+            if (Input.GetKeyDown("g"))
                 inventory.UseItem("goldenCarrot");
-            if (Input.GetKeyDown("d"))
+            if (Input.GetKeyDown("f"))
                 inventory.UseItem("cabbage");
         }
         else{

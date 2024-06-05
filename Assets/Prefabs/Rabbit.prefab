@@ -880,8 +880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1588090451174212}
-  carrotSpeedBoost: 2
-  goldenCarrotSpeedBoost: 5
+  carrotSpeedBoost: 1.25
+  goldenCarrotSpeedBoost: 2
   cabbageStaminaBoost: 2
   carrotTimer: 10
   goldenCarrotTimer: 10

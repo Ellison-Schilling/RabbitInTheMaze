@@ -2963,6 +2963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventroyScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 7772640344333594793, guid: 3b9cc28fc6751487ebfb09a78d501a97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3995,6 +3999,23 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8274505735027027007, guid: 047b8ba2e1a2a4b9fb9eaeb148a7d9fb, type: 3}
+      propertyPath: m_text
+      value: 'Oops,
+
+        You lost!
+
+
+        The cat''s tricks got you, try again!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274505735027027007, guid: 047b8ba2e1a2a4b9fb9eaeb148a7d9fb, type: 3}
+      propertyPath: m_margin.x
+      value: -463.92517
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274505735027027007, guid: 047b8ba2e1a2a4b9fb9eaeb148a7d9fb, type: 3}
+      propertyPath: m_margin.z
+      value: -457.86578
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4610,6 +4631,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3545141390952923871, guid: a9769380e40294e4e9c9258297559af7, type: 3}
+      propertyPath: m_text
+      value: 'Congratulations,
+
+        You Won!
+
+
+        You escaped the cheshire
+        cat''s forest!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545141390952923871, guid: a9769380e40294e4e9c9258297559af7, type: 3}
+      propertyPath: m_margin.x
+      value: -460.72095
+      objectReference: {fileID: 0}
     - target: {fileID: 3666575762221109069, guid: a9769380e40294e4e9c9258297559af7, type: 3}
       propertyPath: m_Name
       value: WinScreen
@@ -4617,6 +4652,10 @@ PrefabInstance:
     - target: {fileID: 3666575762221109069, guid: a9769380e40294e4e9c9258297559af7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5221373383045539536, guid: a9769380e40294e4e9c9258297559af7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 6774227310372492103, guid: a9769380e40294e4e9c9258297559af7, type: 3}
       propertyPath: m_Pivot.x
