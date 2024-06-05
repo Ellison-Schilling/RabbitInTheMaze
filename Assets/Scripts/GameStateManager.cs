@@ -64,6 +64,8 @@ public class GameStateManager : MonoBehaviour
         timer.PauseTimer();
         //Debug.Log(timer.timer);
         StartCoroutine(TimeTitleScreen(6.0f));
+        Debug.Log("time is " + timer.GetTime());
+        UploadScore();
         gameState = 1;
     }
 
@@ -76,6 +78,7 @@ public class GameStateManager : MonoBehaviour
         timer.PauseTimer();
         Debug.Log("time is " + timer.GetTime());
         StartCoroutine(TimeTitleScreen(6.0f));
+
         gameState = -1;
     }
 
@@ -88,6 +91,15 @@ public class GameStateManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    private void UploadScore()
+    // Save score to PlayerPrefs
+    {
+        int final_time = Mathf.FloorToInt(timer.GetTime());
+        PlayerPrefs.SetInt("score", final_time);
+        PlayerPrefs.SetInt("titleScreen", 1);
+        PlayerPrefs.Save();
     }
 
 }
