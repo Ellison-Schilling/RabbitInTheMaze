@@ -675,7 +675,7 @@ PrefabInstance:
     - target: {fileID: 5671885658914850265, guid: 2163b5759181a4106bdba2260caa2ce0, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: b55b4e90b44894e02acc765d207da693, type: 2}
+      objectReference: {fileID: 23800000, guid: 0bb2e1ab252f341a991ac6ea162f3fa4, type: 2}
     - target: {fileID: 6655982571599426701, guid: 2163b5759181a4106bdba2260caa2ce0, type: 3}
       propertyPath: m_Name
       value: BaseRoom3

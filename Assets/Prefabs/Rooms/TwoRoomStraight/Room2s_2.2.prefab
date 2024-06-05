@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 5671885658914850265, guid: 009d1123ee81649a88c1225342ce9c54, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: dbe2689b5c95e414981e8f466a6e306b, type: 2}
+      objectReference: {fileID: 23800000, guid: 4c443371549514268bdd2a3ea8249cfb, type: 2}
     - target: {fileID: 6655982571599426701, guid: 009d1123ee81649a88c1225342ce9c54, type: 3}
       propertyPath: m_Name
       value: 2BaseRoom
