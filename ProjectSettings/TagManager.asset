@@ -17,6 +17,7 @@ TagManager:
   - Cabbage
   - GoldenCarrot
   - Key
+  - MiniKey
   layers:
   - Default
   - TransparentFX

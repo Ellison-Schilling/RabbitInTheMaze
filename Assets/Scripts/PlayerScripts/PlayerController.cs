@@ -125,9 +125,9 @@ public class PlayerController : MonoBehaviour
     private float AngleFromVector(Vector3 vec)
     {
         float result;
-        result = (float)Math.Acos(toMouse.y);
+        result = (float)Math.Acos(vec.y);
         result = (180f / (float)Math.PI) * result;
-        if (toMouse.x < 0)
+        if (vec.x < 0)
         {
             result = result * -1;
         }
