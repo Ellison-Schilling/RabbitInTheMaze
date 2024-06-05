@@ -20,7 +20,7 @@ public class useItems : MonoBehaviour
 
             hasCarrot = InventoryManager.Instance.loopThroughList("[E] Carrot"); //set to true if carrot in inventory
             if (hasCarrot == true){
-                player.maxSpeed += 0.01f;
+                player.maxSpeed += 0.02f;
                 hasCarrot = false; //set to false until can check again}
             }
 
@@ -37,11 +37,11 @@ public class useItems : MonoBehaviour
 
             hasLettuce = InventoryManager.Instance.loopThroughList("[F] Lettuce"); 
             if (hasLettuce == true){
-                if (player.stamina + 33f > player.maxStamina){
+                if (player.stamina + 15f > player.maxStamina){
                     player.stamina = player.maxStamina;
                 }
                 else {
-                    player.stamina += 33f;
+                    player.stamina += 15f;
                 }
                 hasLettuce = false; //set to false until can check again}
             }
@@ -59,7 +59,7 @@ public class useItems : MonoBehaviour
 
             hasGoldenCarrot = InventoryManager.Instance.loopThroughList("[G] Golden Carrot"); 
             if (hasGoldenCarrot == true){
-                player.maxSpeed += 0.02f;
+                player.maxSpeed += 0.05f;
                 hasGoldenCarrot = false; //set to false until can check again}
             }
 
