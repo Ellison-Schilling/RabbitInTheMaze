@@ -6,7 +6,8 @@ using UnityEngine;
 public class ArrowMovement : ArrowManager
 {
     GameObject MiniKey;
-    int counter = 0;
+    int counter = 55;
+    bool KeyAcquired = false;
     // Start is called before the first frame update
 
     private Vector3 GetKeyVector()
@@ -36,13 +37,12 @@ public class ArrowMovement : ArrowManager
         {
             gameObject.SetActive(false);
         }
-        MiniKey = GameObject.FindWithTag("MiniKey");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (MiniKey == null)
+        if (MiniKey == null && !KeyAcquired)
         {
             counter++;
             if (counter > 60)
@@ -51,8 +51,13 @@ public class ArrowMovement : ArrowManager
                 counter = 0;
             }
         }
+        else if (MiniKey == null && KeyAcquired)
+        {
+            gameObject.SetActive(false);
+        }    
         else
         {
+            KeyAcquired = true;
             transform.rotation = Quaternion.Euler(90f, (AngleFromVector(GetKeyVector()) + 180f), 0f);
         }      
     }
