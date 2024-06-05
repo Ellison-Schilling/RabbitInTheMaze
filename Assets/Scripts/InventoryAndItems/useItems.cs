@@ -76,7 +76,17 @@ public class useItems : MonoBehaviour
             foreach (GameObject obj in inventoryObjects){
                 if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[R] Knockback"){
                     Destroy(obj);
-                    usePusher();//IMPLEMENT!
+                    useKB();//IMPLEMENT!
+                    break;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown("t")){
+            foreach (GameObject obj in inventoryObjects){
+                if (obj.transform.Find("ItemName").GetComponent<Text>().text == "[T] Teleporter"){
+                    Destroy(obj);
+                    teleport();//IMPLEMENT!
                     break;
                 }
             }
@@ -84,8 +94,12 @@ public class useItems : MonoBehaviour
 
     }
 
-    public void usePusher(){
+    public void useKB(){
+        Debug.Log("Pow!");
+    }
 
+    public void teleport(){
+        Debug.Log("Zoop!");
     }
 
 }
