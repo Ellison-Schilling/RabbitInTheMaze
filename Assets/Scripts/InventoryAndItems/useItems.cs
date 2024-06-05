@@ -100,9 +100,31 @@ public class useItems : MonoBehaviour
         // Get the Rigidbody component
         characterController = GetComponent<CharacterController>();
     }
+    
+    public float kbRange = 100f;
+    public float kbForce = 10f;
 
     public void useKB(){
+
         Debug.Log("Pow!");
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, kbRange))
+        {
+            if (hit.collider.CompareTag("enemy"))
+            {
+                Rigidbody enemyRb = hit.collider.GetComponent<Rigidbody>();
+                Debug.Log("hit!");
+                if (enemyRb != null)
+                {
+                    Vector3 kbDirection = hit.point - transform.position;
+                    kbDirection.y = 0;
+                    kbDirection.Normalize();
+                    enemyRb.AddForce(kbDirection * kbForce, ForceMode.Impulse);
+                }
+            }
+        }
+
     }
 
     public float teleportDistance = 200f;
