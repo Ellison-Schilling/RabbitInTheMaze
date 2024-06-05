@@ -11,6 +11,7 @@ public class useItems : MonoBehaviour
     public bool hasGoldenCarrot;
     public PlayerController player;
     public GameObject[] inventoryObjects;
+    private CharacterController characterController;
 
     void Update(){
 
@@ -94,12 +95,38 @@ public class useItems : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        // Get the Rigidbody component
+        characterController = GetComponent<CharacterController>();
+    }
+
     public void useKB(){
         Debug.Log("Pow!");
     }
 
+    public float teleportDistance = 200f;
+    public LayerMask layerMask; //used with raycasts, things in the mask can be "hit" by them
+
     public void teleport(){
+
         Debug.Log("Zoop!");
+
+        Vector3 destination = transform.position + transform.forward * teleportDistance;
+        Debug.Log(transform.position);
+        Debug.Log(transform.forward);
+        Debug.Log(teleportDistance);
+        Debug.Log(destination);
+
+        if (Physics.Raycast(transform.position, transform.forward, teleportDistance, layerMask)){
+            Debug.Log("Destination obstructed!");
+        }
+        else{
+            //if nothing in way, can teleport
+            characterController.Move(destination);
+            Debug.Log(transform.position);
+        }
+
     }
 
 }
