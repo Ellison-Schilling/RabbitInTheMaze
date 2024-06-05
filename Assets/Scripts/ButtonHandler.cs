@@ -10,6 +10,8 @@ public class TutorialButtonHandler : MonoBehaviour
     {
         // Load the given scene
         await Task.Delay(500);
+        PlayerPrefs.SetInt(sceneName, 1);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(sceneName);
     }
 }
