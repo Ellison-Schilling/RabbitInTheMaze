@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Room1: {fileID: 44005261502579986, guid: 90586c26e7dbf477ab0f83ef1dad7699, type: 3}
-  Room2: {fileID: 0}
+  Room2: {fileID: 44005261502579986, guid: acf44eeacf5a04dba84055feeafc69b6, type: 3}
   Room3: {fileID: 0}
   Room4: {fileID: 0}

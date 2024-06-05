@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"D:/CS410/RabbitInTheMaze/WebGL Builds;;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Users/ellisonschilling/Documents/CS410/RabbitInTheMaze/FinalBuildRITM;D:/CS410/RabbitInTheMaze/WebGL Builds;;;;;;;;\"}"
             }
         ]
     }
