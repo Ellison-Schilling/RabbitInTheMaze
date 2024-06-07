@@ -117,7 +117,7 @@ public class useItems : MonoBehaviour
                 Debug.Log("hit!");
                 if (enemyRb != null)
                 {
-                    Vector3 kbDirection = hit.point - transform.position;
+                    Vector3 kbDirection = hit.point - transform.position; 
                     kbDirection.y = 0;
                     kbDirection.Normalize();
                     enemyRb.AddForce(kbDirection * kbForce, ForceMode.Impulse);
