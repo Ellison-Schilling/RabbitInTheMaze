@@ -115,13 +115,10 @@ public class useItems : MonoBehaviour
             {
                 Rigidbody enemyRb = hit.collider.GetComponent<Rigidbody>();
                 Debug.Log("hit!");
-                if (enemyRb != null)
-                {
-                    Vector3 kbDirection = hit.point - transform.position; 
-                    kbDirection.y = 0;
-                    kbDirection.Normalize();
-                    enemyRb.AddForce(kbDirection * kbForce, ForceMode.Impulse);
-                }
+                Vector3 kbDirection = hit.point - transform.position; 
+                kbDirection.y = 0;
+                kbDirection.Normalize();
+                enemyRb.AddForce(kbDirection * kbForce, ForceMode.Impulse);
             }
         }
 
