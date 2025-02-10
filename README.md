@@ -1,4 +1,4 @@
-# RabbitInTheMaze
+# Rabbit in the Maze
 
 A Unity-based maze exploration game where players navigate through procedurally generated levels as a rabbit, collecting keys and avoiding enemies in an Alice in Wonderland-themed environment. This project was developed as part of the CS 410 course.
 
